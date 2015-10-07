@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.mhs.eforoosh.model">
+    <class name="com.mhs.eforoosh.model.user.User" table="TBL_USERS" abstract="true">
+
+        <id name="objectId" type="long" column="USER_ID">
+            <generator class="increment"/>
+        </id>
+
+        <discriminator column="USER_TYPE" type="java.lang.String"/>
+
+        <one-to-one name="credential" class="com.mhs.eforoosh.model.Credential" cascade="save-update,delete"/>
+
+        <set name="roleSet" table="TBL_USER_ROLE" inverse="false" lazy="false"
+             cascade="save-update,delete,delete-orphan">
+            <key column="USER_ID" not-null="true"/>
+            <many-to-many class="Role">
+                <column name="ROLE_ID" not-null="true"/>
+            </many-to-many>
+        </set>
+
+    </class>
+
+
+    <subclass name="com.mhs.eforoosh.model.user.Authority" discriminator-value="AUTHORITY"
+              extends="com.mhs.eforoosh.model.user.User">
+        <join table="TBL_AUTHORITY_USERS">
+            <key column="USER_ID"/>
+        </join>
+    </subclass>
+
+    <subclass name="com.mhs.eforoosh.model.user.Customer" discriminator-value="CUSTOMER"
+              extends="com.mhs.eforoosh.model.user.User">
+        <join table="TBL_CUSTOMER_USERS">
+            <key column="USER_ID"/>
+        </join>
+    </subclass>
+
+</hibernate-mapping>

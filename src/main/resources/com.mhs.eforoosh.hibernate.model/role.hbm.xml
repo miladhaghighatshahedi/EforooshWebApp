@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.mhs.eforoosh.model">
+    <class name="Role" table="TBL_ROLES">
+
+        <id name="objectId" type="long" column="ROLE_ID">
+            <generator class="increment"/>
+        </id>
+
+        <property name="roleName" type="java.lang.String" column="ROLE_NAME" not-null="true" unique="true"/>
+        <property name="dateAdded" type="timestamp" column="DATE_ADDED" not-null="true" update="false"/>
+
+
+        <set name="userSet" table="TBL_USER_ROLE" inverse="true" lazy="true" fetch="select" cascade="save-update">
+            <key column="ROLE_ID" not-null="true"/>
+            <many-to-many class="com.mhs.eforoosh.model.user.User">
+                <column name="USER_ID" not-null="true"/>
+            </many-to-many>
+        </set>
+
+    </class>
+
+    <query name="findAllRoles">
+        <![CDATA[SELECT r FROM Role AS r order by r.objectId]]>
+    </query>
+    <query name="findByRoleName">
+        <![CDATA[FROM Role AS r WHERE r.roleName = :roleName]]>
+    </query>
+
+
+</hibernate-mapping>

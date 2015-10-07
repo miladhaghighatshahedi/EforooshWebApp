@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="PostgreSQL - eforoosh@localhost" uuid="44f40e2a-fe55-4327-b413-614fbfcffea2">
+    <database-info product="PostgreSQL" version="9.3.5" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.3 JDBC4 (build 1100)">
+      <identifier-quote-string>&quot;</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact"/>
+    <schema name="public" catalog="eforoosh"/>
+    <table name="product_category_sub_category" schema="public" catalog="eforoosh" type="VIEW">
+      <column name="category_id" sqlType="int8" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="category_name" sqlType="varchar" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="parent_id" sqlType="int8" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="product_id" sqlType="int8" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="product_name" sqlType="varchar" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="type" sqlType="varchar" precision="255" scale="0" nullable="true" jdbcType="12"/>
+    </table>
+    <table name="tbl_authority_users" schema="public" catalog="eforoosh" type="TABLE">
+      <column name="user_id" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="tbl_authority_users_pkey" columns="user_id"/>
+      <foreign-key name="fka7dd872bd88fc26" columns="user_id" ref-table="tbl_users" ref-schema="public" ref-catalog="" ref-columns="user_id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="tbl_category" schema="public" catalog="eforoosh" type="TABLE">
+      <column name="category_id" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="category_name" sqlType="varchar" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="description" sqlType="varchar" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="parent_id" sqlType="int8" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="tbl_category_pkey" columns="category_id"/>
+      <foreign-key name="fka61bcc7fc0e1c3a4" columns="parent_id" ref-table="tbl_category" ref-schema="public" ref-catalog="" ref-columns="category_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="fka61bcc7fc0e1c3a4" table="tbl_category" schema="public" catalog="eforoosh" columns="parent_id"/>
+      <exported-key name="fk166bdd0fa123bed0" table="tbl_category_product" schema="public" catalog="eforoosh" columns="category_id"/>
+    </table>
+    <table name="tbl_category_product" schema="public" catalog="eforoosh" type="TABLE">
+      <column name="product_id" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="category_id" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="tbl_category_product_pkey" columns="category_id,product_id"/>
+      <foreign-key name="fk166bdd0fa123bed0" columns="category_id" ref-table="tbl_category" ref-schema="public" ref-catalog="" ref-columns="category_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk166bdd0f2ee52ec4" columns="product_id" ref-table="tbl_product" ref-schema="public" ref-catalog="" ref-columns="product_id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="tbl_credentials" schema="public" catalog="eforoosh" type="TABLE">
+      <column name="user_id" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="username" sqlType="varchar" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="password" sqlType="varchar" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="enabled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="last_update" sqlType="timestamp" precision="29" scale="6" nullable="false" jdbcType="93"/>
+      <primary-key name="tbl_credentials_pkey" columns="user_id"/>
+      <foreign-key name="fkf28bdbbb203bde86" columns="user_id" ref-table="tbl_users" ref-schema="public" ref-catalog="" ref-columns="user_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="tbl_credentials_username_key" unique="true" columns="username"/>
+    </table>
+    <table name="tbl_customer_users" schema="public" catalog="eforoosh" type="TABLE">
+      <column name="user_id" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="tbl_customer_users_pkey" columns="user_id"/>
+      <foreign-key name="fkd734450810fc3c99" columns="user_id" ref-table="tbl_users" ref-schema="public" ref-catalog="" ref-columns="user_id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="tbl_ordered_item" schema="public" catalog="eforoosh" type="TABLE">
+      <column name="order_id" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="quantity" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="product_id" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="user_order_id" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="tbl_ordered_item_pkey" columns="order_id"/>
+      <foreign-key name="fkab81c6c62ee52ec4" columns="product_id" ref-table="tbl_product" ref-schema="public" ref-catalog="" ref-columns="product_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fkab81c6c64f579494" columns="user_order_id" ref-table="tbl_uer_order" ref-schema="public" ref-catalog="" ref-columns="user_order_id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="tbl_product" schema="public" catalog="eforoosh" type="TABLE">
+      <column name="product_id" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="product_name" sqlType="varchar" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="type" sqlType="varchar" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="unit_price" sqlType="float4" precision="8" scale="8" nullable="false" jdbcType="7"/>
+      <column name="discount" sqlType="float4" precision="8" scale="8" nullable="false" jdbcType="7"/>
+      <column name="packaging" sqlType="varchar" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="quantity" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="unit_in_stock" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="product_status" sqlType="varchar" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="description" sqlType="varchar" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="condition" sqlType="varchar" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="date_of_addition" sqlType="timestamp" precision="29" scale="6" nullable="false" jdbcType="93"/>
+      <primary-key name="tbl_product_pkey" columns="product_id"/>
+      <foreign-key name="fk7f33c52e2ee52ec4" columns="product_id" ref-table="tbl_product" ref-schema="public" ref-catalog="" ref-columns="product_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="fk166bdd0f2ee52ec4" table="tbl_category_product" schema="public" catalog="eforoosh" columns="product_id"/>
+      <exported-key name="fkab81c6c62ee52ec4" table="tbl_ordered_item" schema="public" catalog="eforoosh" columns="product_id"/>
+      <exported-key name="fk7f33c52e2ee52ec4" table="tbl_product" schema="public" catalog="eforoosh" columns="product_id"/>
+      <exported-key name="fk602fbeea2ee52ec4" table="tbl_product_image" schema="public" catalog="eforoosh" columns="product_id"/>
+    </table>
+    <table name="tbl_product_image" schema="public" catalog="eforoosh" type="TABLE">
+      <column name="product_id" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="image" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
+      <foreign-key name="fk602fbeea2ee52ec4" columns="product_id" ref-table="tbl_product" ref-schema="public" ref-catalog="" ref-columns="product_id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="tbl_roles" schema="public" catalog="eforoosh" type="TABLE">
+      <column name="role_id" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="role_name" sqlType="varchar" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="date_added" sqlType="timestamp" precision="29" scale="6" nullable="false" jdbcType="93"/>
+      <primary-key name="tbl_roles_pkey" columns="role_id"/>
+      <exported-key name="fkd607c509a8d3a431" table="tbl_user_role" schema="public" catalog="eforoosh" columns="role_id"/>
+      <index name="tbl_roles_role_name_key" unique="true" columns="role_name"/>
+    </table>
+    <table name="tbl_uer_order" schema="public" catalog="eforoosh" type="TABLE">
+      <column name="user_order_id" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="name" sqlType="varchar" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="street" sqlType="varchar" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="zip" sqlType="varchar" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="city" sqlType="varchar" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="mobile" sqlType="varchar" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="phone" sqlType="varchar" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="varchar" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="viewed" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="delivered" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="canceled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="done" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="order_date" sqlType="timestamp" precision="29" scale="6" nullable="false" jdbcType="93"/>
+      <primary-key name="tbl_uer_order_pkey" columns="user_order_id"/>
+      <exported-key name="fkab81c6c64f579494" table="tbl_ordered_item" schema="public" catalog="eforoosh" columns="user_order_id"/>
+    </table>
+    <table name="tbl_user_role" schema="public" catalog="eforoosh" type="TABLE">
+      <column name="user_id" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="role_id" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="tbl_user_role_pkey" columns="user_id,role_id"/>
+      <foreign-key name="fkd607c509a8d3a431" columns="role_id" ref-table="tbl_roles" ref-schema="public" ref-catalog="" ref-columns="role_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fkd607c509203bde86" columns="user_id" ref-table="tbl_users" ref-schema="public" ref-catalog="" ref-columns="user_id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="tbl_users" schema="public" catalog="eforoosh" type="TABLE">
+      <column name="user_id" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="user_type" sqlType="varchar" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="tbl_users_pkey" columns="user_id"/>
+      <exported-key name="fka7dd872bd88fc26" table="tbl_authority_users" schema="public" catalog="eforoosh" columns="user_id"/>
+      <exported-key name="fkf28bdbbb203bde86" table="tbl_credentials" schema="public" catalog="eforoosh" columns="user_id"/>
+      <exported-key name="fkd734450810fc3c99" table="tbl_customer_users" schema="public" catalog="eforoosh" columns="user_id"/>
+      <exported-key name="fkd607c509203bde86" table="tbl_user_role" schema="public" catalog="eforoosh" columns="user_id"/>
+    </table>
+  </data-source>
+</component>

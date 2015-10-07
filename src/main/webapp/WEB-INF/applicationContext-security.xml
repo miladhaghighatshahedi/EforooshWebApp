@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/security
+                           http://www.springframework.org/schema/security/spring-security.xsd">
+
+
+    <security:authentication-manager>
+        <security:authentication-provider>
+            <security:password-encoder hash="sha-256"/>
+            <security:jdbc-user-service data-source-ref="dataSource"
+                                        authorities-by-username-query="select c.username,r.role_name from tbl_credentials c
+                                                                              join tbl_users u on c.user_id  =  u.user_id
+                                                                              join tbl_user_role ur  on ur.user_id = u.user_id
+                                                                              join tbl_roles r       on r.role_id  = ur.role_id where c.username = ?"
+                                        users-by-username-query="select username,password,enabled from tbl_credentials where username = ?"/>
+
+        </security:authentication-provider>
+    </security:authentication-manager>
+
+    <security:http use-expressions="true">
+        <security:session-management session-fixation-protection="newSession"/>
+        <security:intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/user**" access="hasAnyRole({'ROLE_ADMIN','ROLE_USER'})"/>
+        <security:intercept-url pattern="/user/**" access="hasAnyRole({'ROLE_ADMIN','ROLE_USER'})"/>
+        <security:intercept-url pattern="/client**" access="hasAnyRole({'ROLE_ADMIN','ROLE_CLIENT'})"/>
+        <security:intercept-url pattern="/client/**" access="hasAnyRole({'ROLE_ADMIN','ROLE_CLIENT'})"/>
+        <security:form-login login-page="/login.html"/>
+        <security:logout logout-url="/logout" invalidate-session="true"/>
+    </security:http>
+
+
+</beans>

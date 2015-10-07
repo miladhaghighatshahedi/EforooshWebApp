@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.mhs.eforoosh.model">
+    <class name="com.mhs.eforoosh.model.shopping.UserOrder" table="TBL_UER_ORDER">
+
+        <id name="objectId" type="long" column="USER_ORDER_ID">
+            <generator class="increment"/>
+        </id>
+
+        <property name="name" type="java.lang.String" column="NAME" not-null="true"/>
+        <property name="street" type="java.lang.String" column="STREET" not-null="true"/>
+        <property name="zip" type="java.lang.String" column="ZIP" not-null="true"/>
+        <property name="city" type="java.lang.String" column="CITY" not-null="true"/>
+        <property name="mobileNo" type="java.lang.String" column="MOBILE" not-null="true"/>
+        <property name="phone" type="java.lang.String" column="PHONE" not-null="true"/>
+        <property name="email" type="java.lang.String" column="EMAIL" not-null="true"/>
+        <property name="viewed" type="boolean" column="VIEWED" not-null="true"/>
+        <property name="delivered" type="boolean" column="DELIVERED" not-null="true"/>
+        <property name="canceled" type="boolean" column="CANCELED" not-null="true"/>
+        <property name="done" type="boolean" column="DONE" not-null="true"/>
+        <property name="orderDate" type="timestamp" column="ORDER_DATE" not-null="true"/>
+
+        <set name="orderedItems" inverse="true" lazy="true" fetch="select" cascade="save-update,delete-orphan">
+            <key>
+                <column name="USER_ORDER_ID" not-null="true"/>
+            </key>
+            <one-to-many class="com.mhs.eforoosh.model.shopping.OrderedItem"/>
+        </set>
+
+    </class>
+
+    <query name="FIND_ALL_FETCH">
+        <![CDATA[SELECT distinct o FROM UserOrder o left join fetch o.orderedItems]]>
+    </query>
+
+    <query name="FIND_NOT_VIEWED">
+        <![CDATA[SELECT COUNT(*) FROM UserOrder o where o.viewed = false ]]>
+    </query>
+
+</hibernate-mapping>
+

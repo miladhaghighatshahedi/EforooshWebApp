@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.mhs.eforoosh.model">
+    <class name="com.mhs.eforoosh.model.product.Product" table="TBL_PRODUCT">
+
+        <id name="objectId" type="long" column="PRODUCT_ID">
+            <generator class="increment"/>
+        </id>
+
+        <property name="name" type="java.lang.String" column="PRODUCT_NAME" not-null="true"/>
+        <property name="type" type="java.lang.String" column="TYPE" not-null="true"/>
+        <property name="unitPrice" type="float" column="UNIT_PRICE" not-null="true"/>
+        <property name="discount" type="float" column="DISCOUNT" not-null="true"/>
+        <property name="packaging" type="java.lang.String" column="PACKAGING" not-null="true"/>
+        <property name="quantity" type="int" column="QUANTITY" not-null="true"/>
+        <property name="unitInStock" type="int" column="UNIT_IN_STOCK" not-null="true"/>
+        <property name="productStatus" type="java.lang.String" column="PRODUCT_STATUS" not-null="true"/>
+        <property name="description" type="java.lang.String" column="DESCRIPTION" not-null="true"/>
+        <property name="condition" type="java.lang.String" column="CONDITION" not-null="true"/>
+        <property name="dateOfAddition" type="timestamp" column="DATE_OF_ADDITION" not-null="true"/>
+
+        <set name="orderedItems" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PRODUCT_ID" not-null="true"/>
+            </key>
+            <one-to-many class="com.mhs.eforoosh.model.product.Product"/>
+        </set>
+
+        <set name="images" table="TBL_PRODUCT_IMAGE">
+            <key column="PRODUCT_ID"/>
+            <composite-element class="com.mhs.eforoosh.model.product.Image">
+                <property name="image" type="org.springframework.orm.hibernate3.support.BlobByteArrayType"
+                          column="IMAGE" not-null="false"/>
+            </composite-element>
+        </set>
+
+        <join table="TBL_CATEGORY_PRODUCT" inverse="false" optional="true" fetch="select">
+            <key column="PRODUCT_ID"/>
+            <many-to-one name="category" column="CATEGORY_ID" class="com.mhs.eforoosh.model.product.Category"
+                         not-null="true"/>
+        </join>
+
+    </class>
+
+    <query name="findAllProducts">
+        <![CDATA[SELECT p FROM Product AS p order by p.objectId]]>
+    </query>
+
+</hibernate-mapping>

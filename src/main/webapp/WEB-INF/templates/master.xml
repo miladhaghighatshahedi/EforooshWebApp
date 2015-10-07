@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+
+    <definition name="master" template="/WEB-INF/templates/master.jsp">
+        <put-attribute name="notification" value="/WEB-INF/templates/layout/notification.jsp"/>
+        <put-attribute name="topMenu" value="/WEB-INF/templates/layout/topMenu.jsp"/>
+        <put-attribute name="banner" value="/WEB-INF/templates/layout/banner.jsp"/>
+    </definition>
+
+    <definition name="index" extends="master">
+        <put-attribute name="title" value="EFOROOSH"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/index.jsp"/>
+        <put-attribute name="current" value="index"/>
+    </definition>
+
+    <definition name="login" extends="master">
+        <put-attribute name="title" value="Sign in"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/login.jsp"/>
+        <put-attribute name="current" value="login"/>
+    </definition>
+
+    <definition name="register" extends="master">
+        <put-attribute name="title" value="sign up"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/register.jsp"/>
+        <put-attribute name="current" value="register"/>
+    </definition>
+
+    <definition name="register-authority" extends="master">
+        <put-attribute name="title" value="Register Authority"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/registerAuthority.jsp"/>
+        <put-attribute name="current" value="register-authority"/>
+    </definition>
+
+    <definition name="admin" extends="master">
+        <put-attribute name="title" value="Admin"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/admin.jsp"/>
+        <put-attribute name="current" value="admin"/>
+    </definition>
+
+    <definition name="client" extends="master">
+        <put-attribute name="title" value="Client"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/client/client.jsp"/>
+        <put-attribute name="current" value="client"/>
+    </definition>
+
+    <definition name="user" extends="master">
+        <put-attribute name="title" value="User"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/user/user.jsp"/>
+        <put-attribute name="current" value="user"/>
+    </definition>
+
+    <definition name="users" extends="master">
+        <put-attribute name="title" value="Users"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/users.jsp"/>
+        <put-attribute name="current" value="users"/>
+    </definition>
+
+    <definition name="user-details" extends="master">
+        <put-attribute name="title" value="User Details"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/user-details.jsp"/>
+        <put-attribute name="current" value="users"/>
+    </definition>
+
+    <definition name="user-orders" extends="master">
+        <put-attribute name="title" value="User Orders"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/user-orders.jsp"/>
+        <put-attribute name="current" value="users"/>
+    </definition>
+
+    <definition name="passwordRecovery" extends="master">
+        <put-attribute name="title" value="Password Recovery"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/passwordRecovery.jsp"/>
+        <put-attribute name="current" value="passwordRecovery"/>
+    </definition>
+
+    <definition name="template" extends="master">
+        <put-attribute name="title" value="EFOROOSH"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/template.jsp"/>
+        <put-attribute name="current" value="template"/>
+    </definition>
+
+    <!--Product-->
+
+    <definition name="product-detail" extends="master">
+        <put-attribute name="title" value="Product Detail"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/product/productDetail.jsp"/>
+        <put-attribute name="current" value="product"/>
+    </definition>
+
+    <definition name="product" extends="master">
+        <put-attribute name="title" value="Product"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/product/product.jsp"/>
+        <put-attribute name="current" value="product"/>
+    </definition>
+
+    <!--Category-->
+
+    <definition name="category" extends="master">
+        <put-attribute name="title" value="Category"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/category/category.jsp"/>
+        <put-attribute name="current" value="category"/>
+    </definition>
+
+    <definition name="parent-category-detail" extends="master">
+        <put-attribute name="title" value="Category Detail"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/category/parentCategoryDetail.jsp"/>
+        <put-attribute name="current" value="category"/>
+    </definition>
+
+    <definition name="child-category-detail" extends="master">
+        <put-attribute name="title" value="Category Detail"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/category/childCategoryDetail.jsp"/>
+        <put-attribute name="current" value="category"/>
+    </definition>
+
+    <definition name="store" extends="master">
+        <put-attribute name="title" value="Store"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/store/store.jsp"/>
+        <put-attribute name="current" value="store"/>
+    </definition>
+
+    <definition name="item" extends="master">
+        <put-attribute name="title" value="Item"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/store/item.jsp"/>
+        <put-attribute name="current" value="item"/>
+    </definition>
+
+    <definition name="basket" extends="master">
+        <put-attribute name="title" value="Basket"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/store/basket.jsp"/>
+        <put-attribute name="current" value="basket"/>
+    </definition>
+
+    <definition name="order" extends="master">
+        <put-attribute name="title" value="Order"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/store/order.jsp"/>
+        <put-attribute name="current" value="order"/>
+    </definition>
+
+    <definition name="order-thanks" extends="master">
+        <put-attribute name="title" value="Order"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/store/order.jsp"/>
+        <put-attribute name="current" value="order"/>
+    </definition>
+
+
+</tiles-definitions>

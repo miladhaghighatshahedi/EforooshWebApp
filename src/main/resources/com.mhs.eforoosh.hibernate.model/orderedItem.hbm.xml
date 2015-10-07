@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.mhs.eforoosh.model">
+    <class name="com.mhs.eforoosh.model.shopping.OrderedItem" table="TBL_ORDERED_ITEM">
+
+        <id name="objectId" type="long" column="ORDER_ID">
+            <generator class="increment"/>
+        </id>
+
+        <property name="quantity" type="int" column="QUANTITY" not-null="true"/>
+
+        <many-to-one name="product" class="com.mhs.eforoosh.model.product.Product" fetch="select" lazy="false">
+            <column name="PRODUCT_ID" not-null="true"/>
+        </many-to-one>
+
+        <many-to-one name="userOrder" class="com.mhs.eforoosh.model.shopping.UserOrder" fetch="select">
+            <column name="USER_ORDER_ID" not-null="true"/>
+        </many-to-one>
+
+    </class>
+
+</hibernate-mapping>

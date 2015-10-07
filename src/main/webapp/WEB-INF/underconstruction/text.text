@@ -1,0 +1,177 @@
+ <!-- Role-->
+      <form:form commandName="role"  cssClass="form-horizontal addNewRoleForm" >
+
+          <div class="form-group" dir="<spring:message code="font.direction"/>">
+
+             <label for="roleName" class="col-sm-2 control-label" style="float: <spring:message code="direction" />;">
+                 <spring:message code="role.register.form.roleName"/>
+             </label>
+
+             <div class="col-sm-4" style="float: <spring:message code="direction" />;">
+                <form:input id="roleName" path="roleName" cssClass="form-control"/>
+                <form:errors path="roleName"/>
+             </div>
+
+             <div class="form-group" style="float: <spring:message code="direction" />;">
+                 <div class="col-sm-2">
+                     <button class="btn btn-sm btn-primary" type="submit">
+                         <spring:message code="role.register.form.registerButton"/>
+                     </button>
+                 </div>
+             </div>
+
+         </div>
+    </form:form>
+
+
+
+
+   <form:form commandName="registerForm" cssClass="form-horizontal registrationForm"  >
+         <div class="form-group">
+
+             <label for="firstName" class="col-sm-2 control-label">First Name:</label>
+             <div class="col-sm-10">
+                <form:input id="firstName" path="individual.firstName" cssClass="form-control" placeholder="FirstName"/>
+             </div>
+
+             <label for="middleName" class="col-sm-2 control-label">Middle Name:</label>
+             <div class="col-sm-10">
+                <form:input id="middleName" path="individual.middleName" cssClass="form-control" placeholder="MiddleName"/>
+             </div>
+
+             <label for="lastName" class="col-sm-2 control-label">Last Name:</label>
+             <div class="col-sm-10">
+                <form:input id="lastName" path="individual.lastName" cssClass="form-control" placeholder="FirstName"/>
+             </div>
+
+             <label for="dob" class="col-sm-2 control-label">Date Of Birth:</label>
+             <div class="col-sm-10">
+                <form:input id="dob" path="individual.dob" cssClass="form-control" placeholder="DateOfBirth"/>
+             </div>
+
+             <label for="userName" class="col-sm-2 control-label">User Name:</label>
+             <div class="col-sm-10">
+                <form:input id="userName" path="credential.username" cssClass="form-control" placeholder="UserName"/>
+             </div>
+
+             <label for="password1" class="col-sm-2 control-label">Password:</label>
+             <div class="col-sm-10">
+                <form:password id="password1" path="credential.password" cssClass="form-control" placeholder="Password"/>
+             </div>
+
+             <label for="password1" class="col-sm-2 control-label">Password Again:</label>
+             <div class="col-sm-10">
+               <input id="password2" type="password" name="password_again" class="form-control"/>
+             </div>
+
+             <div class="form-group">
+                 <div class="col-sm-2">
+                     <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+                 </div>
+             </div>
+
+
+         </div>
+    </form:form>
+
+
+
+  <!--Register Form-->
+           <div id="registerbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+               <div class="panel panel-info">
+                    <div class="panel-login-heading">
+                        <button type="button" class="close" data-dismiss="modal" style="float: <spring:message code="direction2"/>;">
+                           <span class="clickable" data-effect="slideUp" aria-hidden="true">×</span>
+                           <span class="sr-only">true</span>
+                        </button>
+                        <div class="panel-title"><spring:message code="admin.register.form.title"/></div>
+                    </div>
+
+                    <div style="padding-top:30px" class="panel-body">
+                            <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                        <form:form id="egisterform"   class="form-horizontal" role="form"  method="POST">
+
+                            <div style="margin-bottom: 25px;width: 100%;" class="input-group">
+                                <label for="register-username" class="col-sm-2 control-label" ><spring:message code="admin.register.form.username.placeholder"/></label>
+                                <form:input path="user.credential.username" id="register-username"  type="text"    cssClass="form-control"  required="true"  />
+                            </div>
+
+                            <div style="margin-bottom: 25px;width: 100%;" class="input-group">
+                                <label for="register-password1" class="col-sm-2 control-label" ><spring:message code="admin.register.form.password.placeholder1"/></label>
+                                <form:input path="user.credential.password" id="register-password1" type="password" cssClass="form-control" required="true" />
+                            </div>
+
+                            <div style="margin-bottom: 25px;width: 100%;" class="input-group">
+                                <label for="register-password2" class="col-sm-2 control-label" ><spring:message code="admin.register.form.password.placeholder2"/></label>
+                                <form:input path="user.credential.password" id="register-password2" type="password" cssClass="form-control" required="true" />
+                            </div>
+
+                            <div style="margin-bottom: 25px;width: 100%;" class="input-group">
+
+                            </div>
+
+                            <div style="margin-top:10px" class="form-group">
+                                <div class="col-sm-12 controls">
+                                     <button id="btn-register" type="submit"   class="btn btn-primary" style="float: <spring:message code="direction2"/>;"><spring:message code="admin.register.form.registerButton"/></button>
+
+                                     <button id="btn-cancel" type="button"    class="btn btn-danger" style="float: <spring:message code="direction2"/>;"><spring:message code="admin.register.form.cancelButton"/></button>
+                                </div>
+                            </div>
+
+                        </form:form>
+                    </div>
+               </div>
+          </div>
+
+
+<script type="text/javascript">
+    var contextPath = "<%= request.getContextPath()%>";
+</script>
+
+<c:set var="locale" value="${pageContext.response.locale}"/>
+
+<c:if test="${locale.toString().equals('yy')}">
+    <script src="<%=request.getContextPath() %>/resources/js/custom-validation.js"></script>
+</c:if>
+
+<c:if test="${locale.toString().equals('xx')}">
+    <script src="<%=request.getContextPath() %>/resources/js/custom-validation_fa.js"></script>
+</c:if>
+
+
+
+
+
+
+   function getRoles() {
+
+       $.ajax({
+           type: "GET",
+           url:  contextPath+ "administration/displayRoles.html",
+           contentType: "application/json; charset=utf-8",
+           dataType: "json",
+           data: "{}",
+           success: function (data) {
+               getRoleListItems(data);
+           },
+           error: function (result) {
+             //  var response = result.responseText;
+              // alert('Error loading: ' + response);
+           }
+       });
+
+       function getRoleListItems(list)
+       {
+           var row = '';
+           $.each(list, function (index, element) {
+
+               row +=
+                         "<tr>"
+                       + "<td>" + element.objectId +        "</td>"
+                       + "<td>" + element.roleName +  "</td>"
+                       + "<td>" + element.dateAdded + "</td>"
+                       + "</tr>";
+               $("#roleTable tbody").append(row);
+           });
+       }
+   }
