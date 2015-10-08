@@ -1,8 +1,10 @@
 package com.mhs.eforoosh.report.model;
 
 
+import javax.validation.constraints.AssertFalse;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by milad on 9/21/2015.
@@ -10,15 +12,8 @@ import java.util.Date;
 public class JasperOrder implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private long order_id;
-    private long product_id;
+    private long User_order_id;
     private Date order_date;
-    private String product_name;
-    private String type;
-    private float unit_price;
-    private int quantity;
-    private String condition;
-    private float discount;
     private String name;
     private String street;
     private String zip;
@@ -27,21 +22,16 @@ public class JasperOrder implements Serializable {
     private String phone;
     private String email;
 
-    public long getOrder_id() {
-        return order_id;
+    private List<JasperOrderedItems> jasperOrderedItems;
+
+    public long getUser_order_id() {
+        return User_order_id;
     }
 
-    public void setOrder_id(long order_id) {
-        this.order_id = order_id;
+    public void setUser_order_id(long user_order_id) {
+        User_order_id = user_order_id;
     }
 
-    public long getProduct_id() {
-        return product_id;
-    }
-
-    public void setProduct_id(long product_id) {
-        this.product_id = product_id;
-    }
 
     public Date getOrder_date() {
         return order_date;
@@ -49,54 +39,6 @@ public class JasperOrder implements Serializable {
 
     public void setOrder_date(Date order_date) {
         this.order_date = order_date;
-    }
-
-    public String getProduct_name() {
-        return product_name;
-    }
-
-    public void setProduct_name(String product_name) {
-        this.product_name = product_name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public float getUnit_price() {
-        return unit_price;
-    }
-
-    public void setUnit_price(float unit_price) {
-        this.unit_price = unit_price;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public String getCondition() {
-        return condition;
-    }
-
-    public void setCondition(String condition) {
-        this.condition = condition;
-    }
-
-    public float getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(float discount) {
-        this.discount = discount;
     }
 
     public String getName() {
@@ -153,5 +95,13 @@ public class JasperOrder implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<JasperOrderedItems> getJasperOrderedItems() {
+        return jasperOrderedItems;
+    }
+
+    public void setJasperOrderedItems(List<JasperOrderedItems> jasperOrderedItems) {
+        this.jasperOrderedItems = jasperOrderedItems;
     }
 }

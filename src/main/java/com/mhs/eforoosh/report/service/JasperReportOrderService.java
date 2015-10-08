@@ -3,6 +3,7 @@ package com.mhs.eforoosh.report.service;
 import com.mhs.eforoosh.model.shopping.OrderedItem;
 import com.mhs.eforoosh.model.shopping.UserOrder;
 import com.mhs.eforoosh.report.model.JasperOrder;
+import com.mhs.eforoosh.report.model.JasperOrderedItems;
 import com.mhs.eforoosh.repository.UserOrderDAO;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
@@ -28,13 +29,15 @@ public class JasperReportOrderService {
     public JRDataSource getDataSource() {
         Iterable<UserOrder> userOrders = userOrderDAO.findAll();
         List<JasperOrder> jasperOrders = new ArrayList<JasperOrder>();
+        List<JasperOrderedItems> jasperOrderedItemsList = new ArrayList<JasperOrderedItems>();
 
 
         for (UserOrder userOrder : userOrders) {
             JasperOrder jasperOrder = new JasperOrder();
+            JasperOrderedItems jasperOrderedItems = new JasperOrderedItems();
             Set<OrderedItem> orderedItems = userOrder.getOrderedItems();
 
-            jasperOrder.setOrder_id(userOrder.getObjectId());
+            jasperOrder.setUser_order_id(userOrder.getObjectId());
             jasperOrder.setName(userOrder.getName());
             jasperOrder.setOrder_date(userOrder.getOrderDate());
             jasperOrder.setStreet(userOrder.getStreet());
@@ -46,16 +49,17 @@ public class JasperReportOrderService {
 
 
             for (OrderedItem orderedItem : orderedItems) {
-                jasperOrder.setProduct_id(orderedItem.getProduct().getObjectId());
-                jasperOrder.setQuantity(orderedItem.getQuantity());
-                jasperOrder.setProduct_name(orderedItem.getProduct().getName());
-                jasperOrder.setUnit_price(orderedItem.getProduct().getUnitPrice());
-                jasperOrder.setType(orderedItem.getProduct().getType());
-                jasperOrder.setCondition(orderedItem.getProduct().getCondition());
-                jasperOrder.setDiscount(orderedItem.getProduct().getDiscount());
+                jasperOrderedItems.setProduct_id(orderedItem.getProduct().getObjectId());
+                jasperOrderedItems.setQuantity(orderedItem.getQuantity());
+                jasperOrderedItems.setProduct_name(orderedItem.getProduct().getName());
+                jasperOrderedItems.setUnit_price(orderedItem.getProduct().getUnitPrice());
+                jasperOrderedItems.setType(orderedItem.getProduct().getType());
+                jasperOrderedItems.setCondition(orderedItem.getProduct().getCondition());
+                jasperOrderedItems.setDiscount(orderedItem.getProduct().getDiscount());
+                jasperOrderedItemsList.add(jasperOrderedItems);
             }
 
-
+            jasperOrder.setJasperOrderedItems(jasperOrderedItemsList);
             jasperOrders.add(jasperOrder);
         }
         return new JRBeanCollectionDataSource(jasperOrders);
@@ -69,7 +73,7 @@ public class JasperReportOrderService {
 
         JasperOrder jasperOrder = new JasperOrder();
 
-        jasperOrder.setOrder_id(userOrder.getObjectId());
+        jasperOrder.setUser_order_id(userOrder.getObjectId());
         jasperOrder.setName(userOrder.getName());
         jasperOrder.setOrder_date(userOrder.getOrderDate());
         jasperOrder.setStreet(userOrder.getStreet());
@@ -79,15 +83,6 @@ public class JasperReportOrderService {
         jasperOrder.setPhone(userOrder.getPhone());
         jasperOrder.setEmail(userOrder.getEmail());
 
-        for (OrderedItem orderedItem : orderedItems) {
-            jasperOrder.setProduct_id(orderedItem.getProduct().getObjectId());
-            jasperOrder.setQuantity(orderedItem.getQuantity());
-            jasperOrder.setProduct_name(orderedItem.getProduct().getName());
-            jasperOrder.setUnit_price(orderedItem.getProduct().getUnitPrice());
-            jasperOrder.setType(orderedItem.getProduct().getType());
-            jasperOrder.setCondition(orderedItem.getProduct().getCondition());
-            jasperOrder.setDiscount(orderedItem.getProduct().getDiscount());
-        }
 
         jasperOrders.add(jasperOrder);
 

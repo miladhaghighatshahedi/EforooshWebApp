@@ -23,8 +23,8 @@ import java.util.*;
 @Controller
 
 public class CategoryController {
-    public static final String CATEGORIES_TEMPLATE = "/reports/categories_report.jrxml";
-    public static final String CATEGORY_TEMPLATE = "/reports/category_report.jrxml";
+    public static final String CATEGORIES_TEMPLATE = "/reports/categories_report.jasper";
+    public static final String CATEGORY_TEMPLATE = "/reports/category_report.jasper";
     private static final long serialVersionUID = 1L;
     @Autowired
     private CategoryService categoryService;

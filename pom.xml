@@ -45,8 +45,15 @@
                     <artifactId>commons-logging</artifactId>
                     <groupId>commons-logging</groupId>
                 </exclusion>
+
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.2</version>
+        </dependency>
+
         <!-- Dependency required by Jasper -->
         <dependency>
             <groupId>commons-digester</groupId>

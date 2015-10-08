@@ -29,7 +29,7 @@ import java.util.Locale;
  */
 @Controller
 public class AdminController {
-    public static final String ORDER_TEMPLATE = "/reports/order_detail.jrxml";
+    public static final String ORDER_TEMPLATE = "/reports/order_detail.jasper";
     private static final long serialVersionUID = 1L;
     private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
     @Autowired

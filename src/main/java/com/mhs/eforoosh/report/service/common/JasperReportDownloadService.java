@@ -34,9 +34,9 @@ public class JasperReportDownloadService {
         try {
 
             InputStream reportStream = this.getClass().getResourceAsStream(TEMPLATE);
-            JasperDesign jasperDesign = JRXmlLoader.load(reportStream);
-            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, jrDataSource);
+            //JasperDesign jasperDesign = JRXmlLoader.load(reportStream);
+           // JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reportStream, params, jrDataSource);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             jres.export(type, jasperPrint, response, baos, fileName);
             write(token, response, baos);

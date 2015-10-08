@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="products_report" pageWidth="700" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="orders_report" pageWidth="700" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="65"/>
-	<property name="ireport.y" value="144"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="45"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
 	<style name="Column header" forecolor="#666666" backcolor="#000000" fontName="Times New Roman" fontSize="11" isBold="true" pdfFontName="Times-Roman"/>
@@ -13,20 +13,14 @@
 			<style mode="Opaque" backcolor="#F0EFEF"/>
 		</conditionalStyle>
 	</style>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["sub_reports/reports/"]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT * from tbl_uer_order as uo join tbl_ordered_item as oi on uo.user_order_id = oi.user_order_id join tbl_product as p on p.product_id = oi.product_id where uo.user_order_id = 1]]>
 	</queryString>
-
-
 	<field name="user_order_id" class="java.lang.Long"/>
-	<field name="product_id" class="java.lang.Long"/>
 	<field name="order_date" class="java.sql.Timestamp"/>
-    <field name="product_name" class="java.lang.String"/>
-    <field name="type" class="java.lang.String"/>
-    <field name="unit_price" class="java.lang.Float"/>
-    <field name="quantity" class="java.lang.Integer"/>
-    <field name="condition" class="java.lang.String"/>
-    <field name="discount" class="java.lang.Float"/>
 	<field name="name" class="java.lang.String"/>
 	<field name="street" class="java.lang.String"/>
 	<field name="zip" class="java.lang.String"/>
@@ -34,19 +28,12 @@
 	<field name="mobile" class="java.lang.String"/>
 	<field name="phone" class="java.lang.String"/>
 	<field name="email" class="java.lang.String"/>
-	<field name="order_id" class="java.lang.Long"/>
-
+	<field name="jasperOrderedItems" class="java.util.List"/>
 	<group name="Group1">
 		<groupExpression><![CDATA[(int)($V{REPORT_COUNT}/15)]]></groupExpression>
-		<groupHeader>
-			<band/>
-		</groupHeader>
 	</group>
 	<group name="Group2">
 		<groupExpression><![CDATA[(int)($V{REPORT_COUNT}/5)]]></groupExpression>
-		<groupHeader>
-			<band/>
-		</groupHeader>
 	</group>
 	<background>
 		<band splitType="Stretch"/>
@@ -54,16 +41,16 @@
 	<title>
 		<band height="131" splitType="Stretch">
 			<frame>
-				<reportElement mode="Opaque" x="0" y="0" width="660" height="95" backcolor="#000000" />
+				<reportElement mode="Opaque" x="0" y="0" width="660" height="95" backcolor="#000000"/>
 				<staticText>
-					<reportElement style="Title" x="36" y="0" width="370" height="66" />
+					<reportElement style="Title" x="36" y="0" width="370" height="66"/>
 					<textElement>
 						<font isBold="false"/>
 					</textElement>
 					<text><![CDATA[EFOROOSH]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SubTitle" x="157" y="66" width="324" height="29" />
+					<reportElement style="SubTitle" x="157" y="66" width="324" height="29"/>
 					<textElement>
 						<font size="22" isBold="false"/>
 					</textElement>
@@ -71,9 +58,9 @@
 				</staticText>
 			</frame>
 			<frame>
-				<reportElement mode="Opaque" x="0" y="99" width="660" height="32" forecolor="#000000" backcolor="#FF9900" />
+				<reportElement mode="Opaque" x="0" y="99" width="660" height="32" forecolor="#000000" backcolor="#FF9900"/>
 				<textField pattern="EEEEE dd MMMMM yyyy">
-					<reportElement x="494" y="12" width="144" height="20" forecolor="#FFFFFF" />
+					<reportElement x="494" y="12" width="144" height="20" forecolor="#FFFFFF"/>
 					<textElement textAlignment="Right">
 						<font size="12"/>
 					</textElement>
@@ -89,30 +76,30 @@
 		<band height="10" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="244" splitType="Stretch">
+		<band height="297" splitType="Stretch">
 			<frame>
-				<reportElement mode="Opaque" x="13" y="10" width="529" height="20" backcolor="#666666" />
+				<reportElement mode="Opaque" x="13" y="10" width="529" height="20" backcolor="#666666"/>
 			</frame>
 			<textField>
-				<reportElement x="107" y="10" width="146" height="20" forecolor="#FFFFFF" />
+				<reportElement x="107" y="10" width="146" height="20" forecolor="#FFFFFF"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{user_order_id}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="57" y="72" width="100" height="20" />
+				<reportElement x="57" y="72" width="100" height="20"/>
 				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="57" y="43" width="100" height="20" />
+				<reportElement x="57" y="43" width="100" height="20"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
 				<text><![CDATA[NAME]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="174" y="72" width="155" height="20" />
+				<reportElement x="174" y="72" width="155" height="20"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
@@ -126,18 +113,18 @@
 				<text><![CDATA[STREET]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="347" y="76" width="100" height="20" />
+				<reportElement x="347" y="76" width="100" height="20"/>
 				<textFieldExpression><![CDATA[$F{zip}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="347" y="43" width="100" height="20" />
+				<reportElement x="347" y="43" width="100" height="20"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
 				<text><![CDATA[zip]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="458" y="74" width="100" height="20" />
+				<reportElement x="458" y="74" width="100" height="20"/>
 				<textFieldExpression><![CDATA[$F{city}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -148,161 +135,89 @@
 				<text><![CDATA[city]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="13" y="10" width="94" height="20" forecolor="#FFFFFF" />
+				<reportElement x="13" y="10" width="94" height="20" forecolor="#FFFFFF"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
 				<text><![CDATA[ORDER ID]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="107" y="150" width="72" height="20" />
+				<reportElement x="107" y="150" width="72" height="20"/>
 				<textFieldExpression><![CDATA[$F{mobile}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="107" y="132" width="72" height="20" />
+				<reportElement x="107" y="132" width="72" height="20"/>
 				<textFieldExpression><![CDATA[$F{phone}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="107" y="112" width="72" height="20" />
+				<reportElement x="107" y="112" width="72" height="20"/>
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
 			<frame>
-				<reportElement mode="Opaque" x="4" y="94" width="300" height="2" forecolor="#D0B48E" backcolor="#666666" />
+				<reportElement mode="Opaque" x="4" y="94" width="300" height="2" forecolor="#D0B48E" backcolor="#666666"/>
 			</frame>
 			<staticText>
-				<reportElement x="13" y="110" width="81" height="20" />
+				<reportElement x="13" y="110" width="81" height="20"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
 				<text><![CDATA[MOBILE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="13" y="130" width="81" height="20" />
+				<reportElement x="13" y="130" width="81" height="20"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
 				<text><![CDATA[LANDLINE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="13" y="150" width="81" height="20" />
+				<reportElement x="13" y="150" width="81" height="20"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
 				<text><![CDATA[EMAIL]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="425" y="10" width="100" height="20" forecolor="#FFFFFF" />
+				<reportElement x="425" y="10" width="100" height="20" forecolor="#FFFFFF"/>
 				<textFieldExpression><![CDATA[$F{order_date}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="306" y="10" width="100" height="20" forecolor="#FFFFFF" />
+				<reportElement x="306" y="10" width="100" height="20" forecolor="#FFFFFF"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
 				<text><![CDATA[ORDERED DATE]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="8" y="207" width="100" height="20" />
-				<textFieldExpression><![CDATA[$F{product_id}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="7" y="187" width="100" height="20" />
-				<textElement>
-					<font size="12"/>
-				</textElement>
-				<text><![CDATA[NUMBER]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="114" y="207" width="100" height="20" />
-				<textFieldExpression><![CDATA[$F{product_name}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="114" y="187" width="100" height="20" />
-				<textElement>
-					<font size="12"/>
-				</textElement>
-				<text><![CDATA[NAME]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="224" y="207" width="100" height="20" />
-				<textFieldExpression><![CDATA[$F{type}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="224" y="187" width="100" height="20" />
-				<textElement>
-					<font size="12"/>
-				</textElement>
-				<text><![CDATA[TYPE]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="332" y="207" width="100" height="20" />
-				<textFieldExpression><![CDATA[$F{unit_price}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="332" y="187" width="100" height="20" />
-				<textElement>
-					<font size="12"/>
-				</textElement>
-				<text><![CDATA[PRICE]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="578" y="207" width="82" height="20" />
-				<textFieldExpression><![CDATA[$F{discount}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="577" y="187" width="82" height="20" />
-				<textElement>
-					<font size="12"/>
-				</textElement>
-				<text><![CDATA[DISCOUNT]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="501" y="207" width="78" height="20"/>
-				<textFieldExpression><![CDATA[$F{condition}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="500" y="187" width="78" height="20" />
-				<textElement>
-					<font size="12"/>
-				</textElement>
-				<text><![CDATA[CONDITION]]></text>
-			</staticText>
 			<frame>
-				<reportElement mode="Opaque" x="7" y="179" width="520" height="2" forecolor="#D0B48E" backcolor="#666666" />
+				<reportElement mode="Opaque" x="7" y="179" width="520" height="2" forecolor="#D0B48E" backcolor="#666666"/>
 			</frame>
-			<textField>
-				<reportElement x="437" y="207" width="57" height="20" />
-				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="436" y="187" width="58" height="20" />
-				<textElement>
-					<font size="12"/>
-				</textElement>
-				<text><![CDATA[quantity]]></text>
-			</staticText>
+			<subreport>
+				<reportElement x="13" y="190" width="637" height="100"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{jasperOrderedItems})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} +"order_detail_subreport.jrxml"]]></subreportExpression>
+			</subreport>
 		</band>
 	</detail>
 	<pageFooter>
 		<band height="26" splitType="Stretch">
 			<frame>
-				<reportElement mode="Opaque" x="2" y="1" width="658" height="24" forecolor="#D0B48E" backcolor="#666666" />
+				<reportElement mode="Opaque" x="2" y="1" width="658" height="24" forecolor="#D0B48E" backcolor="#666666"/>
 				<textField evaluationTime="Report">
-					<reportElement style="Column header" x="618" y="4" width="40" height="20" forecolor="#FFFFFF" />
+					<reportElement style="Column header" x="618" y="4" width="40" height="20" forecolor="#FFFFFF"/>
 					<textElement verticalAlignment="Middle">
 						<font size="10" isBold="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="Column header" x="523" y="4" width="80" height="20" forecolor="#FFFFFF" />
+					<reportElement style="Column header" x="523" y="4" width="80" height="20" forecolor="#FFFFFF"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font size="10" isBold="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 				</textField>
 				<textField pattern="EEEEE dd MMMMM yyyy">
-					<reportElement style="Column header" x="2" y="1" width="197" height="20" forecolor="#FFFFFF" />
+					<reportElement style="Column header" x="2" y="1" width="197" height="20" forecolor="#FFFFFF"/>
 					<textElement verticalAlignment="Middle">
 						<font size="10" isBold="false"/>
 					</textElement>
