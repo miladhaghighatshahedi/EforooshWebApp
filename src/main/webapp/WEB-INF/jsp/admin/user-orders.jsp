@@ -106,7 +106,7 @@
             </ul>
         </div>
 
-        <table class="table table-striped table-bordered table-hover">
+        <table  class="table table-striped table-bordered table-hover">
             <thead>
             <tr>
                 <th><spring:message code="userOrder.name"/></th>
@@ -116,7 +116,7 @@
                 <th><spring:message code="userOrder.orderedDate"/></th>
                 <th><spring:message code="userOrder.orderedTime"/></th>
                 <th><spring:message code="userOrder.orderedItems"/></th>
-                <th style="width:200px;"><spring:message code="userOrder.options"/></th>
+                <th><spring:message code="userOrder.options"/></th>
             </tr>
             </thead>
             <tbody>
@@ -150,11 +150,12 @@
                             </tbody>
                         </table>
                     </td>
-                    <td style="width: 150px;" colspan="2">
-                        <div class="btn-group" >
-                            <button type="button" class="btn btn-warning btn-sm"><spring:message
+                    <td >
+
+                        <div class="btn-group" style="width: 100px;">
+                            <button type="button" class="btn btn-warning btn-sm" ><spring:message
                                     code="category.report.button"/></button>
-                            <button type="button" class="btn btn-warning btn-sm dropdown-toggle" data-toggle="dropdown"
+                            <button type="button" class="btn btn-warning btn-sm dropdown-toggle"  data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
                                 <span class="caret"></span>
                                 <span class="sr-only">Toggle Dropdown</span>
@@ -169,9 +170,10 @@
                                 </li>
                             </ul>
                         </div>
-                        <a href="<spring:url value='orders/remove/${uo.objectId}.html'/>"class="btn btn-danger btn-sm triggerRemoveUserOrderButton">
+                        <a href="<spring:url value='orders/remove/${uo.objectId}.html'/>" class="btn btn-danger btn-sm triggerRemoveUserOrderButton">
                             <spring:message code="userOrder.remove.button"/>
                         </a>
+
                     </td>
                 </tr>
                 <tr>
