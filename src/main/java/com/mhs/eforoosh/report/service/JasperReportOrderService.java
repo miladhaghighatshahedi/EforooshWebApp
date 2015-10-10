@@ -2,8 +2,8 @@ package com.mhs.eforoosh.report.service;
 
 import com.mhs.eforoosh.model.shopping.OrderedItem;
 import com.mhs.eforoosh.model.shopping.UserOrder;
-import com.mhs.eforoosh.report.model.JasperOrder;
-import com.mhs.eforoosh.report.model.JasperOrderedItems;
+import com.mhs.eforoosh.report.model.JasperOrderItem;
+import com.mhs.eforoosh.report.model.JasperUserOrder;
 import com.mhs.eforoosh.repository.UserOrderDAO;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
@@ -11,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by milad on 9/21/2015.
@@ -27,66 +25,50 @@ public class JasperReportOrderService {
     private UserOrderDAO userOrderDAO;
 
     public JRDataSource getDataSource() {
-        Iterable<UserOrder> userOrders = userOrderDAO.findAll();
-        List<JasperOrder> jasperOrders = new ArrayList<JasperOrder>();
-        List<JasperOrderedItems> jasperOrderedItemsList = new ArrayList<JasperOrderedItems>();
 
+        List<UserOrder> userOrders = userOrderDAO.findAll();
+        List<JasperUserOrder> jasperUserOrders = new ArrayList<JasperUserOrder>();
+        List<JasperOrderItem> jasperOrderItems = new ArrayList<JasperOrderItem>();
 
-        for (UserOrder userOrder : userOrders) {
-            JasperOrder jasperOrder = new JasperOrder();
-            JasperOrderedItems jasperOrderedItems = new JasperOrderedItems();
-            Set<OrderedItem> orderedItems = userOrder.getOrderedItems();
+        for(UserOrder userOrder : userOrders) {
+            JasperUserOrder jasperUserOrder = new JasperUserOrder();
 
-            jasperOrder.setUser_order_id(userOrder.getObjectId());
-            jasperOrder.setName(userOrder.getName());
-            jasperOrder.setOrder_date(userOrder.getOrderDate());
-            jasperOrder.setStreet(userOrder.getStreet());
-            jasperOrder.setZip(userOrder.getZip());
-            jasperOrder.setCity(userOrder.getCity());
-            jasperOrder.setMobile(userOrder.getMobileNo());
-            jasperOrder.setPhone(userOrder.getPhone());
-            jasperOrder.setEmail(userOrder.getEmail());
+            jasperUserOrder.setUser_order_id(userOrder.getObjectId());
+            jasperUserOrder.setName(userOrder.getName());
+            jasperUserOrder.setStreet(userOrder.getStreet());
+            jasperUserOrder.setZip(userOrder.getZip());
+            jasperUserOrder.setCity(userOrder.getCity());
+            jasperUserOrder.setMobile(userOrder.getMobileNo());
+            jasperUserOrder.setPhone(userOrder.getPhone());
+            jasperUserOrder.setEmail(userOrder.getEmail());
+            jasperUserOrder.setOrder_date(userOrder.getOrderDate());
+            jasperUserOrder.setViewed(userOrder.isViewed());
+            jasperUserOrder.setDelivered(userOrder.isDelivered());
+            jasperUserOrder.setDone(userOrder.isDone());
+            jasperUserOrder.setCanceled(userOrder.isCanceled());
 
+            for(OrderedItem orderedItem:userOrder.getOrderedItems())
+            {
+                JasperOrderItem jasperOrderItem = new JasperOrderItem();
 
-            for (OrderedItem orderedItem : orderedItems) {
-                jasperOrderedItems.setProduct_id(orderedItem.getProduct().getObjectId());
-                jasperOrderedItems.setQuantity(orderedItem.getQuantity());
-                jasperOrderedItems.setProduct_name(orderedItem.getProduct().getName());
-                jasperOrderedItems.setUnit_price(orderedItem.getProduct().getUnitPrice());
-                jasperOrderedItems.setType(orderedItem.getProduct().getType());
-                jasperOrderedItems.setCondition(orderedItem.getProduct().getCondition());
-                jasperOrderedItems.setDiscount(orderedItem.getProduct().getDiscount());
-                jasperOrderedItemsList.add(jasperOrderedItems);
+                jasperOrderItem.setOrder_item_id(orderedItem.getObjectId());
+                jasperOrderItem.setQuantity(orderedItem.getQuantity());
+
+                jasperOrderItem.setProduct_id(orderedItem.getProduct().getObjectId());
+                jasperOrderItem.setProduct_name(orderedItem.getProduct().getName());
+                jasperOrderItem.setType(orderedItem.getProduct().getType());
+                jasperOrderItem.setUnit_price(orderedItem.getProduct().getUnitPrice());
+                jasperOrderItem.setDiscount(orderedItem.getProduct().getDiscount());
+                jasperOrderItem.setCondition(orderedItem.getProduct().getCondition());
+
+                jasperOrderItems.add(jasperOrderItem);
             }
 
-            jasperOrder.setJasperOrderedItems(jasperOrderedItemsList);
-            jasperOrders.add(jasperOrder);
+            jasperUserOrder.setJasperOrderItems(jasperOrderItems);
+            jasperUserOrders.add(jasperUserOrder);
         }
-        return new JRBeanCollectionDataSource(jasperOrders);
-
+        return new JRBeanCollectionDataSource(jasperUserOrders);
     }
 
-    public JRDataSource getDataSourceById(long productId) {
-        UserOrder userOrder = userOrderDAO.findOne(productId);
-        List<JasperOrder> jasperOrders = new ArrayList<JasperOrder>();
-        Set<OrderedItem> orderedItems = userOrder.getOrderedItems();
-
-        JasperOrder jasperOrder = new JasperOrder();
-
-        jasperOrder.setUser_order_id(userOrder.getObjectId());
-        jasperOrder.setName(userOrder.getName());
-        jasperOrder.setOrder_date(userOrder.getOrderDate());
-        jasperOrder.setStreet(userOrder.getStreet());
-        jasperOrder.setZip(userOrder.getZip());
-        jasperOrder.setCity(userOrder.getCity());
-        jasperOrder.setMobile(userOrder.getMobileNo());
-        jasperOrder.setPhone(userOrder.getPhone());
-        jasperOrder.setEmail(userOrder.getEmail());
-
-
-        jasperOrders.add(jasperOrder);
-
-        return new JRBeanCollectionDataSource(jasperOrders);
-    }
 
 }

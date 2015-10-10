@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="products_report" pageWidth="895" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" >
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" backcolor="#000000" fontName="Times New Roman" fontSize="11" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="product_id" class="java.lang.Long"/>
+	<queryString>
+		<![CDATA[select * from tbl_product where product_id = $P{product_id}]]>
+	</queryString>
+	<field name="product_id" class="java.lang.Long"/>
+	<field name="product_name" class="java.lang.String"/>
+	<field name="type" class="java.lang.String"/>
+	<field name="unit_price" class="java.lang.Float"/>
+	<field name="discount" class="java.lang.Float"/>
+	<field name="packaging" class="java.lang.String"/>
+	<field name="quantity" class="java.lang.Integer"/>
+	<field name="unit_in_stock" class="java.lang.Integer"/>
+	<field name="product_status" class="java.lang.String"/>
+	<field name="description" class="java.lang.String"/>
+	<field name="condition" class="java.lang.String"/>
+	<field name="date_of_addition" class="java.sql.Timestamp"/>
+	<group name="Group1">
+		<groupExpression><![CDATA[(int)($V{REPORT_COUNT}/15)]]></groupExpression>
+		<groupHeader>
+			<band height="26">
+				<frame>
+					<reportElement mode="Opaque" x="2" y="0" width="853" height="24" forecolor="#B89F7D" backcolor="#009933" />
+				</frame>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="SubTitle" isPrintRepeatedValues="false" x="2" y="0" width="479" height="24" forecolor="#FFFFFF" />
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["GroupField"]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Group2">
+		<groupExpression><![CDATA[(int)($V{REPORT_COUNT}/5)]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="855" height="95" backcolor="#000000" />
+				<staticText>
+					<reportElement style="Title" x="36" y="0" width="370" height="66" />
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[EFOROOSH]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="SubTitle" x="157" y="66" width="249" height="29" />
+					<textElement>
+						<font size="22" isBold="false"/>
+					</textElement>
+					<text><![CDATA[PRODUCTS REPORT]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="100" width="855" height="32" forecolor="#000000" backcolor="#FF9900" />
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="307" y="12" width="144" height="20" forecolor="#FFFFFF" />
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" mode="Transparent" x="2" y="1" width="72" height="20" forecolor="#808080" backcolor="#000000" />
+				<text><![CDATA[PRODUCT ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="73" y="1" width="110" height="20" />
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[ NAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="182" y="1" width="98" height="20" />
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[TYPE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="279" y="1" width="77" height="20" />
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[PRICE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="356" y="1" width="81" height="20" />
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[DISCOUNT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="436" y="1" width="93" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[PACKAGING]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="528" y="1" width="65" height="20" />
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[QUANTITY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="592" y="1" width="101" height="20" />
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[UNIT IN STOCK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="693" y="1" width="58" height="20" />
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[STATUS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="751" y="1" width="66" height="20" />
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[CONDITION]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="69" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="4" y="6" width="851" height="20" />
+				<textField>
+					<reportElement style="Detail" x="0" y="0" width="72" height="20" />
+					<textFieldExpression><![CDATA[$F{product_id}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="72" y="0" width="107" height="20" />
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{product_name}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<textField>
+				<reportElement style="Detail" x="182" y="6" width="98" height="20" />
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{type}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="280" y="6" width="77" height="20" />
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{unit_price}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="356" y="6" width="81" height="20" />
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{discount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="436" y="6" width="93" height="20" />
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{packaging}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="528" y="6" width="65" height="20" />
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="592" y="6" width="101" height="20" />
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{unit_in_stock}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="693" y="6" width="58" height="20" />
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{product_status}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="751" y="6" width="66" height="20" />
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{condition}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="88" y="26" width="72" height="20" />
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" mode="Transparent" x="2" y="26" width="84" height="20" forecolor="#808080" backcolor="#000000" />
+				<text><![CDATA[DESCRIPTION:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" mode="Transparent" x="4" y="46" width="84" height="20" forecolor="#808080" backcolor="#000000" />
+				<text><![CDATA[ADDED DATE:]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="88" y="46" width="94" height="20"/>
+				<textFieldExpression><![CDATA[$F{date_of_addition}]]></textFieldExpression>
+			</textField>
+			<frame>
+				<reportElement mode="Opaque" x="2" y="66" width="855" height="3" forecolor="#D0B48E" backcolor="#000000" />
+			</frame>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="2" y="1" width="855" height="24" forecolor="#D0B48E" backcolor="#CC0000" />
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="800" y="0" width="40" height="20" forecolor="#FFFFFF" />
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="707" y="0" width="80" height="20" forecolor="#FFFFFF" />
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="1" width="197" height="20" forecolor="#FFFFFF" />
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

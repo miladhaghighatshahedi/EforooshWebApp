@@ -32,7 +32,7 @@
     </class>
 
     <query name="FIND_ALL_FETCH">
-        <![CDATA[SELECT distinct o FROM UserOrder o left join fetch o.orderedItems]]>
+        <![CDATA[SELECT o FROM UserOrder o ]]>
     </query>
 
     <query name="FIND_NOT_VIEWED">
@@ -41,3 +41,4 @@
 
 </hibernate-mapping>
 
+<!--SELECT distinct o FROM UserOrder o left join fetch o.orderedItems-->

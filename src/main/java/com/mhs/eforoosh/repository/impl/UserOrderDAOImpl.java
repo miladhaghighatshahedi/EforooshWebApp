@@ -1,6 +1,7 @@
 package com.mhs.eforoosh.repository.impl;
 
 
+import com.mhs.eforoosh.model.shopping.OrderedItem;
 import com.mhs.eforoosh.model.shopping.UserOrder;
 import com.mhs.eforoosh.repository.UserOrderDAO;
 import org.hibernate.Hibernate;
@@ -95,6 +96,10 @@ public class UserOrderDAOImpl implements UserOrderDAO {
         List<UserOrder> userOrders = sessionFactory.getCurrentSession().getNamedQuery("FIND_ALL_FETCH").list();
         for (UserOrder userOrder : userOrders) {
             Hibernate.initialize(userOrder.getOrderedItems());
+            for(OrderedItem orderedItem :userOrder.getOrderedItems())
+            {
+                Hibernate.initialize(orderedItem.getProduct());
+            }
         }
         return userOrders;
     }

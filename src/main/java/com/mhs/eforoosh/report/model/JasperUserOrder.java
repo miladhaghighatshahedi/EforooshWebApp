@@ -1,19 +1,16 @@
 package com.mhs.eforoosh.report.model;
 
-
-import javax.validation.constraints.AssertFalse;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
- * Created by milad on 9/21/2015.
+ * Created by milad on 10/8/2015.
  */
-public class JasperOrder implements Serializable {
+public class JasperUserOrder {
     private static final long serialVersionUID = 1L;
 
-    private long User_order_id;
-    private Date order_date;
+    private long   user_order_id;
     private String name;
     private String street;
     private String zip;
@@ -21,24 +18,19 @@ public class JasperOrder implements Serializable {
     private String mobile;
     private String phone;
     private String email;
-
-    private List<JasperOrderedItems> jasperOrderedItems;
+    private boolean viewed;
+    private boolean delivered;
+    private boolean canceled;
+    private boolean done;
+    private Date order_date;
+    private List<JasperOrderItem> jasperOrderItems;
 
     public long getUser_order_id() {
-        return User_order_id;
+        return user_order_id;
     }
 
     public void setUser_order_id(long user_order_id) {
-        User_order_id = user_order_id;
-    }
-
-
-    public Date getOrder_date() {
-        return order_date;
-    }
-
-    public void setOrder_date(Date order_date) {
-        this.order_date = order_date;
+        this.user_order_id = user_order_id;
     }
 
     public String getName() {
@@ -97,11 +89,51 @@ public class JasperOrder implements Serializable {
         this.email = email;
     }
 
-    public List<JasperOrderedItems> getJasperOrderedItems() {
-        return jasperOrderedItems;
+    public boolean isViewed() {
+        return viewed;
     }
 
-    public void setJasperOrderedItems(List<JasperOrderedItems> jasperOrderedItems) {
-        this.jasperOrderedItems = jasperOrderedItems;
+    public void setViewed(boolean viewed) {
+        this.viewed = viewed;
+    }
+
+    public boolean isDelivered() {
+        return delivered;
+    }
+
+    public void setDelivered(boolean delivered) {
+        this.delivered = delivered;
+    }
+
+    public boolean isCanceled() {
+        return canceled;
+    }
+
+    public void setCanceled(boolean canceled) {
+        this.canceled = canceled;
+    }
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
+    }
+
+    public Date getOrder_date() {
+        return order_date;
+    }
+
+    public void setOrder_date(Date order_date) {
+        this.order_date = order_date;
+    }
+
+    public List<JasperOrderItem> getJasperOrderItems() {
+        return jasperOrderItems;
+    }
+
+    public void setJasperOrderItems(List<JasperOrderItem> jasperOrderItems) {
+        this.jasperOrderItems = jasperOrderItems;
     }
 }

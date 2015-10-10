@@ -28,9 +28,9 @@ import java.util.*;
 @Controller
 @RequestMapping("product")
 public class ProductController {
-    public static final String PRODUCTS_TEMPLATE = "/reports/products_report.jasper";
-    public static final String PRODUCT_TEMPLATE = "/reports/product_report.jasper";
-    public static final String PRODUCT_TEMPLATE_DETAIL = "/reports/product_details_report.jasper";
+    public static final String PRODUCTS_TEMPLATE = "/reports/products_report.jrxml";
+    public static final String PRODUCT_TEMPLATE = "/reports/product_report.jrxml";
+    public static final String PRODUCT_TEMPLATE_DETAIL = "/reports/product_details_report.jrxml";
     private static final long serialVersionUID = 1L;
     private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
     @Autowired

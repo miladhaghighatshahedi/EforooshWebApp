@@ -18,7 +18,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,9 +32,11 @@ import java.util.Locale;
  */
 @Controller
 public class AdminController {
-    public static final String ORDER_TEMPLATE = "/reports/order_detail.jasper";
+    public static final String ORDER_TEMPLATE = "/reports/order_detail.jrxml";
     private static final long serialVersionUID = 1L;
     private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
+    @Autowired
+    private ServletContext context;
     @Autowired
     private CredentialService credentialService;
     @Autowired
@@ -150,7 +155,11 @@ public class AdminController {
 
     @RequestMapping(value = "admin/orders/pdf/orderReport", method = RequestMethod.GET)
     public void getPdfReportAllC(HttpServletResponse response) {
+        String reportsDirPath = context.getRealPath("/reports/");
+
+
         HashMap<String, Object> params = new HashMap<String, Object>();
+        params.put("reportsDir", reportsDirPath);
         List<JRSortField> sortList = new ArrayList<JRSortField>();
         JRDesignSortField sortField = new JRDesignSortField();
         sortField.setName("user_order_id");

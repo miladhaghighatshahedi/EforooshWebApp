@@ -3,19 +3,25 @@ package com.mhs.eforoosh.report.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by milad on 9/21/2015.
  */
-public class JasperProduct implements Serializable {
+public class JasperOrderItem implements Serializable {
     private static final long serialVersionUID = 1L;
+
+    private long order_item_id;
+    private int quantity;
+    private JasperUserOrder jasperUserOrder;
+
     private long product_id;
     private String product_name;
     private String type;
     private float unit_price;
     private float discount;
     private String packaging;
-    private int quantity;
+    private int product_quantity;
     private int unit_in_stock;
     private String product_status;
     private String description;
@@ -23,12 +29,28 @@ public class JasperProduct implements Serializable {
     private Date date_of_addition;
     private String category_name;
 
-    public String getProduct_status() {
-        return product_status;
+    public long getOrder_item_id() {
+        return order_item_id;
     }
 
-    public void setProduct_status(String product_status) {
-        this.product_status = product_status;
+    public void setOrder_item_id(long order_item_id) {
+        this.order_item_id = order_item_id;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public JasperUserOrder getJasperUserOrder() {
+        return jasperUserOrder;
+    }
+
+    public void setJasperUserOrder(JasperUserOrder jasperUserOrder) {
+        this.jasperUserOrder = jasperUserOrder;
     }
 
     public long getProduct_id() {
@@ -79,12 +101,12 @@ public class JasperProduct implements Serializable {
         this.packaging = packaging;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getProduct_quantity() {
+        return product_quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setProduct_quantity(int product_quantity) {
+        this.product_quantity = product_quantity;
     }
 
     public int getUnit_in_stock() {
@@ -93,6 +115,14 @@ public class JasperProduct implements Serializable {
 
     public void setUnit_in_stock(int unit_in_stock) {
         this.unit_in_stock = unit_in_stock;
+    }
+
+    public String getProduct_status() {
+        return product_status;
+    }
+
+    public void setProduct_status(String product_status) {
+        this.product_status = product_status;
     }
 
     public String getDescription() {
