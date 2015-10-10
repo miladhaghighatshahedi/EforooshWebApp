@@ -93,7 +93,7 @@ public class UserOrderDAOImpl implements UserOrderDAO {
     }
 
     public List<UserOrder> findAll() {
-        List<UserOrder> userOrders = sessionFactory.getCurrentSession().getNamedQuery("FIND_ALL_FETCH").list();
+        List<UserOrder> userOrders =(List<UserOrder>) sessionFactory.getCurrentSession().getNamedQuery("FIND_ALL_FETCH").list();
         for (UserOrder userOrder : userOrders) {
             Hibernate.initialize(userOrder.getOrderedItems());
             for(OrderedItem orderedItem :userOrder.getOrderedItems())

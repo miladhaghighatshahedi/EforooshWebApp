@@ -153,9 +153,9 @@ public class AdminController {
 
     // GET ORDER REPORT
 
-    @RequestMapping(value = "admin/orders/pdf/orderReport", method = RequestMethod.GET)
-    public void getPdfReportAllC(HttpServletResponse response) {
-        String reportsDirPath = context.getRealPath("/reports/");
+    @RequestMapping(value = "admin/orders/pdf/ordersReport", method = RequestMethod.GET)
+    public void getPdfReportAllO(HttpServletResponse response) {
+        String reportsDirPath = context.getRealPath("/");
 
 
         HashMap<String, Object> params = new HashMap<String, Object>();
@@ -167,7 +167,24 @@ public class AdminController {
         sortField.setType(SortFieldTypeEnum.FIELD);
         sortList.add(sortField);
         params.put(JRParameter.SORT_FIELDS, sortList);
-        jasperReportDownloadService.download("pdf", "pdf", response, ORDER_TEMPLATE, jasperReportOrderService.getDataSource(), "OrderReport.pdf", params);
+        jasperReportDownloadService.download("pdf", "pdf", response, ORDER_TEMPLATE, jasperReportOrderService.getDataSource(), "OrdersReport.pdf", params);
+    }
+
+    @RequestMapping(value = "admin/orders/pdf/orderReport/{orderId}", method = RequestMethod.GET)
+    public void getPdfReportByIdO(HttpServletResponse response,@PathVariable long orderId) {
+        String reportsDirPath = context.getRealPath("/");
+
+
+        HashMap<String, Object> params = new HashMap<String, Object>();
+        params.put("reportsDir", reportsDirPath);
+        List<JRSortField> sortList = new ArrayList<JRSortField>();
+        JRDesignSortField sortField = new JRDesignSortField();
+        sortField.setName("user_order_id");
+        sortField.setOrder(SortOrderEnum.ASCENDING);
+        sortField.setType(SortFieldTypeEnum.FIELD);
+        sortList.add(sortField);
+        params.put(JRParameter.SORT_FIELDS, sortList);
+        jasperReportDownloadService.download("pdf", "pdf", response, ORDER_TEMPLATE, jasperReportOrderService.getDataSourceById(orderId), "OrderReport.pdf", params);
     }
 
 }

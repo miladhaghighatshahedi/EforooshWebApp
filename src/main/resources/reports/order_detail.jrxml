@@ -14,9 +14,6 @@
 		</conditionalStyle>
 	</style>
 	<parameter name="reportsDir" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["C:\\Users\\milad\\Desktop\\"]]></defaultValueExpression>
-	</parameter>
 	<queryString>
 		<![CDATA[SELECT * from tbl_uer_order]]>
 	</queryString>
@@ -195,7 +192,7 @@
 			<subreport>
 				<reportElement x="7" y="181" width="753" height="42"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{jasperOrderItems})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "order_detail_subreport.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{reportsDir} + "order_detail_subreport.jasper"]]></subreportExpression>
 			</subreport>
 			<break>
 				<reportElement x="0" y="233" width="760" height="1"/>

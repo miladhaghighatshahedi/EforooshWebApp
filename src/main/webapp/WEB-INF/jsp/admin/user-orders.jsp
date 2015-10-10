@@ -133,8 +133,8 @@
                         </table>
                     </td>
                     <td>
-                        <li><a href="<spring:url value='orders/pdf/orderReport.pdf'/>"><spring:message code="pdf"/></a>
-                        </li>
+                        <li><a href="<spring:url value='orders/pdf/ordersReport.pdf'/>"><spring:message code="pdf"/></a></li>
+                        <li><a href="<spring:url value='orders/pdf/orderReport/${uo.objectId}.pdf'/>">single PDF</a></li>
 
                     </td>
                     <td>
