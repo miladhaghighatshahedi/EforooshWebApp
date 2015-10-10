@@ -1,7 +1,6 @@
 package com.mhs.eforoosh.report.service;
 
 import com.mhs.eforoosh.model.product.Product;
-import com.mhs.eforoosh.report.model.JasperProduct;
 import com.mhs.eforoosh.repository.ProductDAO;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;

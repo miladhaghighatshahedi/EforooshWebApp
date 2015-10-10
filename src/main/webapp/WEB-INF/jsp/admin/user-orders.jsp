@@ -87,6 +87,25 @@
 
         <h1><span class="label label-success"><spring:message code="userOrder.userOrders"/></span></h1>
 
+        <div class="btn-group">
+            <button type="button" class="btn btn-warning btn-sm"><spring:message
+                    code="category.report.button"/></button>
+            <button type="button" class="btn btn-warning btn-sm dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="<spring:url value='orders/pdf/ordersReport.pdf'/>"><spring:message code="pdf"/></a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="<spring:url value='orders/xls/ordersReport.xls'/>"><spring:message code="xls"/></a></li>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li><a href="<spring:url value='orders/html/ordersReport.html'/>"><spring:message code="html"/></a></li>
+                </li>
+            </ul>
+        </div>
+
         <table class="table table-striped table-bordered table-hover">
             <thead>
             <tr>
@@ -97,8 +116,7 @@
                 <th><spring:message code="userOrder.orderedDate"/></th>
                 <th><spring:message code="userOrder.orderedTime"/></th>
                 <th><spring:message code="userOrder.orderedItems"/></th>
-                <th><spring:message code="userOrder.report"/></th>
-                <th><spring:message code="userOrder.remove"/></th>
+                <th style="width:200px;"><spring:message code="userOrder.options"/></th>
             </tr>
             </thead>
             <tbody>
@@ -132,15 +150,28 @@
                             </tbody>
                         </table>
                     </td>
-                    <td>
-                        <li><a href="<spring:url value='orders/pdf/ordersReport.pdf'/>"><spring:message code="pdf"/></a></li>
-                        <li><a href="<spring:url value='orders/pdf/orderReport/${uo.objectId}.pdf'/>">single PDF</a></li>
-
-                    </td>
-                    <td>
-                        <a href="<spring:url value='orders/remove/${uo.objectId}.html'/>"
-                           class="btn btn-danger btn-sm triggerRemoveUserOrderButton"><spring:message
-                                code="userOrder.remove.button"/></a><br>
+                    <td style="width: 150px;" colspan="2">
+                        <div class="btn-group" >
+                            <button type="button" class="btn btn-warning btn-sm"><spring:message
+                                    code="category.report.button"/></button>
+                            <button type="button" class="btn btn-warning btn-sm dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="<spring:url value='orders/pdf/orderReport/${uo.objectId}.pdf'/>"><spring:message code="pdf"/></a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="<spring:url value='orders/xls/orderReport/${uo.objectId}.xls'/>"><spring:message code="xls"/></a></li>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="<spring:url value='orders/html/orderReport/${uo.objectId}.html'/>"><spring:message code="html"/></a></li>
+                                </li>
+                            </ul>
+                        </div>
+                        <a href="<spring:url value='orders/remove/${uo.objectId}.html'/>"class="btn btn-danger btn-sm triggerRemoveUserOrderButton">
+                            <spring:message code="userOrder.remove.button"/>
+                        </a>
                     </td>
                 </tr>
                 <tr>

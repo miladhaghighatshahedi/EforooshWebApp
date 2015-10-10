@@ -156,8 +156,6 @@ public class AdminController {
     @RequestMapping(value = "admin/orders/pdf/ordersReport", method = RequestMethod.GET)
     public void getPdfReportAllO(HttpServletResponse response) {
         String reportsDirPath = context.getRealPath("/");
-
-
         HashMap<String, Object> params = new HashMap<String, Object>();
         params.put("reportsDir", reportsDirPath);
         List<JRSortField> sortList = new ArrayList<JRSortField>();
@@ -170,8 +168,23 @@ public class AdminController {
         jasperReportDownloadService.download("pdf", "pdf", response, ORDER_TEMPLATE, jasperReportOrderService.getDataSource(), "OrdersReport.pdf", params);
     }
 
-    @RequestMapping(value = "admin/orders/pdf/orderReport/{orderId}", method = RequestMethod.GET)
-    public void getPdfReportByIdO(HttpServletResponse response,@PathVariable long orderId) {
+    @RequestMapping(value = "admin/orders/xls/ordersReport", method = RequestMethod.GET)
+    public void getXlsReportAllO(HttpServletResponse response) {
+        String reportsDirPath = context.getRealPath("/");
+        HashMap<String, Object> params = new HashMap<String, Object>();
+        params.put("reportsDir", reportsDirPath);
+        List<JRSortField> sortList = new ArrayList<JRSortField>();
+        JRDesignSortField sortField = new JRDesignSortField();
+        sortField.setName("user_order_id");
+        sortField.setOrder(SortOrderEnum.ASCENDING);
+        sortField.setType(SortFieldTypeEnum.FIELD);
+        sortList.add(sortField);
+        params.put(JRParameter.SORT_FIELDS, sortList);
+        jasperReportDownloadService.download("xls", "xls", response, ORDER_TEMPLATE, jasperReportOrderService.getDataSource(), "OrdersReport.xls", params);
+    }
+
+    @RequestMapping(value = "admin/orders/html/ordersReport", method = RequestMethod.GET)
+    public void getHtmlReportAllO(HttpServletResponse response) {
         String reportsDirPath = context.getRealPath("/");
 
 
@@ -184,7 +197,54 @@ public class AdminController {
         sortField.setType(SortFieldTypeEnum.FIELD);
         sortList.add(sortField);
         params.put(JRParameter.SORT_FIELDS, sortList);
+        jasperReportDownloadService.download("html", "html", response, ORDER_TEMPLATE, jasperReportOrderService.getDataSource(), "OrdersReport.html", params);
+    }
+
+
+
+    @RequestMapping(value = "admin/orders/pdf/orderReport/{orderId}", method = RequestMethod.GET)
+    public void getPdfReportByIdO(HttpServletResponse response,@PathVariable long orderId) {
+        String reportsDirPath = context.getRealPath("/");
+        HashMap<String, Object> params = new HashMap<String, Object>();
+        params.put("reportsDir", reportsDirPath);
+        List<JRSortField> sortList = new ArrayList<JRSortField>();
+        JRDesignSortField sortField = new JRDesignSortField();
+        sortField.setName("user_order_id");
+        sortField.setOrder(SortOrderEnum.ASCENDING);
+        sortField.setType(SortFieldTypeEnum.FIELD);
+        sortList.add(sortField);
+        params.put(JRParameter.SORT_FIELDS, sortList);
         jasperReportDownloadService.download("pdf", "pdf", response, ORDER_TEMPLATE, jasperReportOrderService.getDataSourceById(orderId), "OrderReport.pdf", params);
+    }
+
+    @RequestMapping(value = "admin/orders/xls/orderReport/{orderId}", method = RequestMethod.GET)
+    public void getXlsReportByIdO(HttpServletResponse response,@PathVariable long orderId) {
+        String reportsDirPath = context.getRealPath("/");
+        HashMap<String, Object> params = new HashMap<String, Object>();
+        params.put("reportsDir", reportsDirPath);
+        List<JRSortField> sortList = new ArrayList<JRSortField>();
+        JRDesignSortField sortField = new JRDesignSortField();
+        sortField.setName("user_order_id");
+        sortField.setOrder(SortOrderEnum.ASCENDING);
+        sortField.setType(SortFieldTypeEnum.FIELD);
+        sortList.add(sortField);
+        params.put(JRParameter.SORT_FIELDS, sortList);
+        jasperReportDownloadService.download("xls", "xls", response, ORDER_TEMPLATE, jasperReportOrderService.getDataSourceById(orderId), "OrderReport.xls", params);
+    }
+
+    @RequestMapping(value = "admin/orders/html/orderReport/{orderId}", method = RequestMethod.GET)
+    public void getHtmlReportByIdO(HttpServletResponse response,@PathVariable long orderId) {
+        String reportsDirPath = context.getRealPath("/");
+        HashMap<String, Object> params = new HashMap<String, Object>();
+        params.put("reportsDir", reportsDirPath);
+        List<JRSortField> sortList = new ArrayList<JRSortField>();
+        JRDesignSortField sortField = new JRDesignSortField();
+        sortField.setName("user_order_id");
+        sortField.setOrder(SortOrderEnum.ASCENDING);
+        sortField.setType(SortFieldTypeEnum.FIELD);
+        sortList.add(sortField);
+        params.put(JRParameter.SORT_FIELDS, sortList);
+        jasperReportDownloadService.download("html", "html", response, ORDER_TEMPLATE, jasperReportOrderService.getDataSourceById(orderId), "OrderReport.html", params);
     }
 
 }
