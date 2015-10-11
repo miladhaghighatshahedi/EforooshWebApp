@@ -1,7 +1,6 @@
 package com.mhs.eforoosh.service;
 
 import com.mhs.eforoosh.model.product.Product;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -16,9 +15,7 @@ public interface ProductService {
 
     public Product removeById(long objectId);
 
-    public Page<Product> findAll(Pageable pageable);
-
-    public List<Product> findAll();
+    public List<Product> findAll(Integer offset, Integer maxResults);
 
     List<Product> findAllProductCategory();
 
@@ -27,5 +24,7 @@ public interface ProductService {
     public Product findById(long objectId);
 
     public Product findByName(String name);
+
+    public Long count();
 
 }

@@ -74,7 +74,7 @@
 		<band height="10" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="237" splitType="Stretch">
+		<band height="258" splitType="Stretch">
 			<frame>
 				<reportElement mode="Opaque" x="13" y="10" width="529" height="20" backcolor="#666666"/>
 				<textField>
@@ -190,7 +190,7 @@
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement x="7" y="181" width="753" height="42"/>
+				<reportElement x="7" y="182" width="753" height="76"/>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{jasperOrderItems})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{reportsDir} + "order_detail_subreport.jasper"]]></subreportExpression>
 			</subreport>

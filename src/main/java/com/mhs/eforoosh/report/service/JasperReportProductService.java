@@ -23,7 +23,7 @@ public class JasperReportProductService {
     private ProductDAO productDAO;
 
     public JRDataSource getDataSource() {
-        List<Product> products = productDAO.findAll();
+        List<Product> products = productDAO.findAll(null,null);
         List<JasperProduct> jasperProducts = new ArrayList<JasperProduct>();
 
         for (Product product : products) {

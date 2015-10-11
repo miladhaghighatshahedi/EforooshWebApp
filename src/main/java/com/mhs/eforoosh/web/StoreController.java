@@ -27,8 +27,10 @@ public class StoreController {
     private ProductService productService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String showClientPage(Locale locale, Map<String, Object> model) {
-        model.put("products", productService.findAllProductCategoryParentCategory());
+    public String showClientPage(Locale locale, Map<String, Object> model,Integer offset, Integer maxResults) {
+        model.put("products", productService.findAll(offset,maxResults));
+        model.put("count", productService.count());
+        model.put("offset", offset);
         return "store";
     }
 

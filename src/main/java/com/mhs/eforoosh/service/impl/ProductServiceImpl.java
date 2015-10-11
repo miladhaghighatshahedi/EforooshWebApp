@@ -6,8 +6,6 @@ import com.mhs.eforoosh.service.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,14 +44,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<Product> findAll(Pageable pageable) {
-        Page<Product> products = productDAO.findAll(pageable);
-        return products;
-    }
-
-    @Override
-    public List<Product> findAll() {
-        List<Product> products = productDAO.findAll();
+    public List<Product> findAll(Integer offset, Integer maxResults) {
+        List<Product> products = productDAO.findAll(offset,maxResults);
         return products;
     }
 
@@ -80,4 +72,11 @@ public class ProductServiceImpl implements ProductService {
         Product product1 = productDAO.findByName(name);
         return product1;
     }
+
+    @Override
+    public Long count() {
+        return productDAO.count();
+    }
+
+
 }

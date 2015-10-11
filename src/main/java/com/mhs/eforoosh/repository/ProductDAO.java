@@ -18,7 +18,7 @@ public interface ProductDAO {
 
     Page<Product> findAll(Pageable pageable);
 
-    List<Product> findAll();
+    List<Product> findAll(Integer offset, Integer maxResults);
 
     List<Product> findAllProductCategory();
 
@@ -27,4 +27,6 @@ public interface ProductDAO {
     Product findById(long objectId);
 
     Product findByName(String name);
+
+    Long count();
 }

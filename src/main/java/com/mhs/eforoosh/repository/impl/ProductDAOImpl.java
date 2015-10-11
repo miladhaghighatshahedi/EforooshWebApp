@@ -5,6 +5,7 @@ import com.mhs.eforoosh.repository.ProductDAO;
 import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -55,9 +56,12 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public List<Product> findAll() {
-        Query query = sessionFactory.getCurrentSession().getNamedQuery("findAllProducts");
-        return query.list();
+    public List<Product> findAll(Integer offset, Integer maxResults) {
+        return (List<Product>)sessionFactory.openSession()
+                .createCriteria(Product.class)
+                .setFirstResult(offset!=null?offset:0)
+                .setMaxResults(maxResults!=null?maxResults:10)
+                .list();
     }
 
     @Override
@@ -92,5 +96,9 @@ public class ProductDAOImpl implements ProductDAO {
     public Product findByName(String name) {
         Product product = (Product) sessionFactory.getCurrentSession().getNamedQuery("findProductByName").setParameter("name", name).uniqueResult();
         return product;
+    }
+
+    public Long count() {
+        return (Long)sessionFactory.getCurrentSession().createCriteria(Product.class).setProjection(Projections.rowCount()).uniqueResult();
     }
 }
