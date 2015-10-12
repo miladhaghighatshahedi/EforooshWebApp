@@ -75,8 +75,12 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public List<Product> findAllProductCategoryParentCategory() {
-        List<Product> products = sessionFactory.getCurrentSession().getNamedQuery("findAllProducts").list();
+    public List<Product> findAllProductCategoryParentCategory(Integer offset, Integer maxResults) {
+        List<Product> products = sessionFactory.getCurrentSession()
+                .createCriteria(Product.class)
+                .setFirstResult(offset!=null?offset:0)
+                .setMaxResults(maxResults!=null?maxResults:10)
+                .list();
         for (Product product : products) {
             Hibernate.initialize(product.getCategory());
             Hibernate.initialize(product.getCategory().getParentCategory());

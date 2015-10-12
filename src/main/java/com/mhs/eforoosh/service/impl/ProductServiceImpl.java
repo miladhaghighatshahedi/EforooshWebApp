@@ -56,8 +56,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> findAllProductCategoryParentCategory() {
-        List<Product> products = productDAO.findAllProductCategoryParentCategory();
+    public List<Product> findAllProductCategoryParentCategory(Integer offset, Integer maxResults) {
+        List<Product> products = productDAO.findAllProductCategoryParentCategory(offset,maxResults);
         return products;
     }
 

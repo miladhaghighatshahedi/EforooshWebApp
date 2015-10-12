@@ -34,10 +34,12 @@ public class CategoryController {
     private JasperReportCategoryService jasperReportCategoryService;
 
     @RequestMapping(value = "/category", method = RequestMethod.GET)
-    public String showCategoryPage(Locale locale, Map<String, Object> model) {
+    public String showCategoryPage(Locale locale, Map<String, Object> model,Integer offset, Integer maxResults) {
         Category category = new Category();
         model.put("category", category);
-        model.put("categories", categoryService.findAll());
+        model.put("categories", categoryService.findAll(offset,maxResults));
+        model.put("count", categoryService.count());
+        model.put("offset", offset);
         return "category";
     }
 
@@ -80,8 +82,10 @@ public class CategoryController {
     @RequestMapping(value = "/category/categories", method = RequestMethod.GET)
     public
     @ResponseBody
-    List<Category> findAllCategories() {
-        return categoryService.findAll();
+    List<Category> findAllCategories(Integer offset, Integer maxResults,Map<String, Object> model) {
+        model.put("count", categoryService.count());
+        model.put("offset", offset);
+        return categoryService.findAll(offset,maxResults);
     }
 
     @RequestMapping(value = "/category/subcategories", method = RequestMethod.GET)

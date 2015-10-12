@@ -3,7 +3,9 @@ package com.mhs.eforoosh.repository.impl;
 import com.mhs.eforoosh.model.product.Category;
 import com.mhs.eforoosh.repository.CategoryDAO;
 import org.hibernate.Hibernate;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -65,15 +67,26 @@ public class CategoryDAOImpl implements CategoryDAO {
     }
 
     @Override
-    public List<Category> findAll() {
-        List<Category> categories = sessionFactory.getCurrentSession().getNamedQuery("findAll").list();
+    public List<Category> findAll(Integer offset, Integer maxResults) {
+        List<Category> categories  = sessionFactory.getCurrentSession()
+                .createCriteria(Category.class)
+                .setFirstResult(offset!=null?offset:0)
+                .setMaxResults(maxResults!=null?maxResults:10)
+                .list();
+        return categories;
+    }
 
+    public List<Category> findAll() {
+        List<Category> categories  = sessionFactory.getCurrentSession().getNamedQuery("findAll").list();
         return categories;
     }
 
     @Override
-    public List<Category> findAllCategories() {
-        List<Category> categories = sessionFactory.getCurrentSession().getNamedQuery("findAllParent").list();
+    public List<Category> findAllCategories(Integer offset, Integer maxResults) {
+        Query query = sessionFactory.getCurrentSession().getNamedQuery("findAllParent");
+        query.setFirstResult(offset);
+        query.setMaxResults(maxResults);
+        List<Category> categories = (List<Category>)query.list();
         for (Category category : categories) {
             Hibernate.initialize(category.getChildCategories());
             Hibernate.initialize(category.getProducts());
@@ -89,5 +102,9 @@ public class CategoryDAOImpl implements CategoryDAO {
             Hibernate.initialize(category.getProducts());
         }
         return categories;
+    }
+
+    public Long count() {
+        return (Long)sessionFactory.getCurrentSession().createCriteria(Category.class).setProjection(Projections.rowCount()).uniqueResult();
     }
 }

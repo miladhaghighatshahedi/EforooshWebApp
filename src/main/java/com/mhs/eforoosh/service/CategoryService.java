@@ -18,7 +18,10 @@ public interface CategoryService {
 
     public Category findByName(String name);
 
+    public List<Category> findAll(Integer offset, Integer maxResults);
+
     public List<Category> findAll();
 
     public List<Category> findByParentId(long parentId);
+    public Long count();
 }

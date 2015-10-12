@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="tag" uri="/WEB-INF/taglibs/paginationTaglib.tld"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@include file="/WEB-INF/templates/layout/taglibs.jsp" %>
 
@@ -127,6 +128,7 @@
         <table class="table table-bordered table-hover table-striped">
             <thead>
             <tr>
+                <th>id</th>
                 <th><spring:message code="product.name"/></th>
                 <th><spring:message code="product.description"/></th>
                 <th><spring:message code="product.parentCategory"/></th>
@@ -136,8 +138,9 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${products}" var="product">
+            <c:forEach items="${products}" var="product" varStatus="itr">
                 <tr>
+                    <td>${offset + itr.index +1 }</td>
                     <td><c:out value="${product.name}"/></td>
                     <td><c:out value="${product.description}"/></td>
                     <th><c:out value="${product.category.parentCategory.name}"/></th>
@@ -172,13 +175,13 @@
                             </ul>
                         </div>
                     </td>
-                    <td><a href="<spring:url value='product/${product.objectId}.html'/>"><spring:message
-                            code="product.detail"/></a></td>
+                    <td><a href="<spring:url value='product/${product.objectId}.html'/>"><spring:message code="product.detail"/></a></td>
                 </tr>
             </c:forEach>
+
             </tbody>
         </table>
-
+        <center><tag:paginate max="5" offset="${offset}" count="${count}" uri="product.html" next="&raquo;" previous="&laquo;" /></center>
     </div>
     <!--Category Modal-->
     <form:form id="addNewProductform" commandName="product" class="form-horizontal" role="form" method="POST"

@@ -19,7 +19,7 @@ public interface ProductService {
 
     List<Product> findAllProductCategory();
 
-    List<Product> findAllProductCategoryParentCategory();
+    List<Product> findAllProductCategoryParentCategory(Integer offset, Integer maxResults);
 
     public Product findById(long objectId);
 

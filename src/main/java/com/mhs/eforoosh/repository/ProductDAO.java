@@ -22,7 +22,7 @@ public interface ProductDAO {
 
     List<Product> findAllProductCategory();
 
-    List<Product> findAllProductCategoryParentCategory();
+    List<Product> findAllProductCategoryParentCategory(Integer offset, Integer maxResults);
 
     Product findById(long objectId);
 

@@ -18,9 +18,12 @@ public interface CategoryDAO {
 
     public Category findByName(String name);
 
+    public List<Category> findAll(Integer offset, Integer maxResults);
     public List<Category> findAll();
 
-    public List<Category> findAllCategories();
+    public List<Category> findAllCategories(Integer offset, Integer maxResults);
 
     public List<Category> findByParentId(long parentId);
+
+    public Long count();
 }
