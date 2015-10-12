@@ -25,5 +25,9 @@ public interface UserOrderDAO {
 
     Integer getNotViewedCount();
 
+    List<UserOrder> findAll(Integer offset, Integer maxResults);
+
+    Long count();
+
 
 }

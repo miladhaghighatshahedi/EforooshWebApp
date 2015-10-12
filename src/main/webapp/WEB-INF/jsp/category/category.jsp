@@ -1,7 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@include file="/WEB-INF/templates/layout/taglibs.jsp" %>
-
+<%@ taglib prefix="tag" uri="/WEB-INF/taglibs/paginationTaglib.tld"%>
 <c:url var="findCategoriesURL" value="category/categories.json"/>
 <c:url var="findSubCategoriesURL" value="category/subcategories.json"/>
 <script type="text/javascript">
@@ -103,6 +103,7 @@
         <table class="table table-bordered table-hover table-striped">
             <thead>
             <tr>
+                <th>id</th>
                 <th><spring:message code="category.name"/></th>
                 <th><spring:message code="category.description"/></th>
                 <th><spring:message code="category.options"/></th>
@@ -110,8 +111,9 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${categories}" var="category">
+            <c:forEach items="${categories}" var="category" varStatus="itr">
                 <tr>
+                    <td>${offset + itr.index +1 }</td>
                     <td><c:out value="${category.name}"/></td>
                     <td><c:out value="${category.description}"/></td>
                     <td>
@@ -150,6 +152,7 @@
             </c:forEach>
             </tbody>
         </table>
+        <center><tag:paginate max="5" offset="${offset}" count="${count}" uri="category.html" next="&raquo;" previous="&laquo;" /></center>
     </div>
 
 

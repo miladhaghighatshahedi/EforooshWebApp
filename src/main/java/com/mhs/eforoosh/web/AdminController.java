@@ -22,10 +22,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 /**
  * Created by MHS on 11/27/2014.
@@ -99,8 +96,10 @@ public class AdminController {
     }
 
     @RequestMapping(value = "admin/orders", method = RequestMethod.GET)
-    public String show(Model model) {
-        model.addAttribute("userOrders", userOrderService.findAll());
+    public String show(Map<String, Object> model,Integer offset, Integer maxResults) {
+        model.put("userOrders", userOrderService.findAll(offset, maxResults));
+        model.put("count",userOrderService.count());
+        model.put("offset", offset);
         return "user-orders";
     }
 

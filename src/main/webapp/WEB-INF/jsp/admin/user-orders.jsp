@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@include file="/WEB-INF/templates/layout/taglibs.jsp" %>
+<%@ taglib prefix="tag" uri="/WEB-INF/taglibs/paginationTaglib.tld"%>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -109,6 +110,7 @@
         <table  class="table table-striped table-bordered table-hover">
             <thead>
             <tr>
+                <th>id</th>
                 <th><spring:message code="userOrder.name"/></th>
                 <th><spring:message code="userOrder.mobile"/></th>
                 <th><spring:message code="userOrder.phone"/></th>
@@ -120,8 +122,9 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${userOrders}" var="uo">
+            <c:forEach items="${userOrders}" var="uo" varStatus="itr">
                 <tr>
+                    <td>${offset + itr.index +1 }</td>
                     <td><c:out value="${uo.name}"/></td>
                     <td><c:out value="${uo.mobileNo}"/></td>
                     <td><c:out value="${uo.phone}"/></td>
@@ -240,7 +243,7 @@
             </c:forEach>
             </tbody>
         </table>
-
+        <center><tag:paginate max="5" offset="${offset}" count="${count}" uri="product.html" next="&raquo;" previous="&laquo;" /></center>
     </div>
 
     <div class="modal fade" id="removeUserOrderModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"

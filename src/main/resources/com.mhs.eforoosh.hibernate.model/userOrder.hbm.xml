@@ -32,7 +32,7 @@
     </class>
 
     <query name="FIND_ALL_FETCH">
-        <![CDATA[SELECT o FROM UserOrder o ]]>
+        <![CDATA[SELECT o FROM UserOrder o order by o.orderDate desc ]]>
     </query>
 
     <query name="FIND_NOT_VIEWED">

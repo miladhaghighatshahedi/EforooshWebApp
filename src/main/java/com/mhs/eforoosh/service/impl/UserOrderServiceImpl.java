@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service("userOrderService")
 @Transactional
 public class UserOrderServiceImpl implements UserOrderService {
@@ -51,8 +53,18 @@ public class UserOrderServiceImpl implements UserOrderService {
         return userOrderDAO.findAll();
     }
 
+    @Override
+    public List<UserOrder> findAll(Integer offset, Integer maxResults) {
+        return userOrderDAO.findAll(offset,maxResults);
+    }
+
     public Integer getNotViewedCount() {
         return userOrderDAO.getNotViewedCount();
+    }
+
+    @Override
+    public Long count() {
+        return userOrderDAO.count();
     }
 
 }

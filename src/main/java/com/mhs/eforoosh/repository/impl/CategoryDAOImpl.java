@@ -3,6 +3,7 @@ package com.mhs.eforoosh.repository.impl;
 import com.mhs.eforoosh.model.product.Category;
 import com.mhs.eforoosh.repository.CategoryDAO;
 import org.hibernate.Hibernate;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 import org.slf4j.Logger;
@@ -76,6 +77,16 @@ public class CategoryDAOImpl implements CategoryDAO {
         List<Category> categories = sessionFactory.getCurrentSession().getNamedQuery("findAllParent").list();
         return categories;
     }
+
+    @Override
+    public List<Category> findAllParents(Integer offset, Integer maxResults) {
+        Query query = sessionFactory.getCurrentSession().getNamedQuery("findAllParent");
+        query.setFirstResult(offset!=null?offset:0);
+        query.setMaxResults(maxResults!=null?maxResults:10);
+        List<Category> categories = (List<Category>)query.list();
+        return categories;
+    }
+
 
     @Override
     public List<Category> findAllCategories() {

@@ -3,6 +3,8 @@ package com.mhs.eforoosh.service;
 
 import com.mhs.eforoosh.model.shopping.UserOrder;
 
+import java.util.List;
+
 public interface UserOrderService {
     UserOrder save(UserOrder userOrder);
 
@@ -22,5 +24,9 @@ public interface UserOrderService {
 
     Iterable<UserOrder> findAll();
 
+    List<UserOrder> findAll(Integer offset, Integer maxResults);
+
     Integer getNotViewedCount();
+
+    Long count();
 }

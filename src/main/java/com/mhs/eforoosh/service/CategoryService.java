@@ -15,6 +15,7 @@ public interface CategoryService {
     Category findByName(String name);
     List<Category> findAll();
     List<Category> findAllParents();
+    List<Category> findAllParents(Integer offset, Integer maxResults);
     List<Category> findAllCategories();
     List<Category> findByParentId(long parentId);
     Long count();

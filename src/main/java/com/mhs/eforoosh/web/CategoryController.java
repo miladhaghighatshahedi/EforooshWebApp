@@ -37,7 +37,7 @@ public class CategoryController {
     public String showCategoryPage(Locale locale, Map<String, Object> model,Integer offset, Integer maxResults) {
         Category category = new Category();
         model.put("category", category);
-        model.put("categories", categoryService.findAll());
+        model.put("categories", categoryService.findAllParents(offset,maxResults));
         model.put("count", categoryService.count());
         model.put("offset", offset);
         return "category";

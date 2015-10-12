@@ -7,6 +7,8 @@ import com.mhs.eforoosh.repository.UserOrderDAO;
 import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -104,12 +106,28 @@ public class UserOrderDAOImpl implements UserOrderDAO {
         return userOrders;
     }
 
+
+
     public Integer getNotViewedCount() {
 
         Query query = sessionFactory.getCurrentSession().getNamedQuery("FIND_NOT_VIEWED");
         Integer count = (Integer) query.uniqueResult();
         return count;
 
+    }
+
+    @Override
+    public List<UserOrder> findAll(Integer offset, Integer maxResults) {
+        return (List<UserOrder>)sessionFactory.openSession()
+                .createCriteria(UserOrder.class)
+                .setFirstResult(offset!=null?offset:0)
+                .setMaxResults(maxResults!=null?maxResults:10).addOrder(Order.desc("orderDate"))
+                .list();
+    }
+
+    @Override
+    public Long count() {
+        return (Long)sessionFactory.getCurrentSession().createCriteria(UserOrder.class).setProjection(Projections.rowCount()).uniqueResult();
     }
 
 
