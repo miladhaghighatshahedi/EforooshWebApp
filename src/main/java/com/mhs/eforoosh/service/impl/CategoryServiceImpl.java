@@ -54,14 +54,20 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<Category> findAll(Integer offset, Integer maxResults) {
-        List<Category> categories = categoryDAO.findAllCategories(offset,maxResults);
+    public List<Category> findAll() {
+        List<Category> categories = categoryDAO.findAll();
         return categories;
     }
 
     @Override
-    public List<Category> findAll() {
-        List<Category> categories = categoryDAO.findAll();
+    public List<Category> findAllParents() {
+        List<Category> categories = categoryDAO.findAllParents();
+        return categories;
+    }
+
+    @Override
+    public List<Category> findAllCategories() {
+        List<Category> categories = categoryDAO.findAllCategories();
         return categories;
     }
 

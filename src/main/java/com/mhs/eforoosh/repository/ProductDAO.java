@@ -11,22 +11,14 @@ import java.util.List;
  */
 public interface ProductDAO {
     Product add(Product product);
-
     Product update(Product product);
-
     Product removeById(long objectId);
-
     Page<Product> findAll(Pageable pageable);
-
+    List<Product> findAll();
     List<Product> findAll(Integer offset, Integer maxResults);
-
     List<Product> findAllProductCategory();
-
     List<Product> findAllProductCategoryParentCategory(Integer offset, Integer maxResults);
-
     Product findById(long objectId);
-
     Product findByName(String name);
-
     Long count();
 }

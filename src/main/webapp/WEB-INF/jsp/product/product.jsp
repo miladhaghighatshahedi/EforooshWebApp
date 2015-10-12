@@ -184,8 +184,7 @@
         <center><tag:paginate max="5" offset="${offset}" count="${count}" uri="product.html" next="&raquo;" previous="&laquo;" /></center>
     </div>
     <!--Category Modal-->
-    <form:form id="addNewProductform" commandName="product" class="form-horizontal" role="form" method="POST"
-               enctype="multipart/form-data">
+    <form:form id="addNewProductform" commandName="product" class="form-horizontal" role="form" method="POST">
         <div class="modal fade" id="addNewProductModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true">
             <div class="modal-dialog">
@@ -226,11 +225,6 @@
                             <form:input id="product-name" path="name" class="form-control"/>
                         </div>
 
-                        <div style="margin-bottom: 5px;width: 100%;" class="input-group">
-                            <form:label for="product-name" path="images" cssClass="label label-success"><spring:message
-                                    code="product.modal.image"/></form:label>
-                            <input type="file" name="image"/>
-                        </div>
 
                         <div style="margin-bottom: 5px;width: 100%;" class="input-group">
                             <form:label for="product-type" path="name" cssClass="label label-success"><spring:message

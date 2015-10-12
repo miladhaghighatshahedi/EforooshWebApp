@@ -56,6 +56,12 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
+    public List<Product> findAll() {
+        Query query = sessionFactory.getCurrentSession().getNamedQuery("findAllProducts");
+        return (List<Product>) query.list();
+    }
+
+    @Override
     public List<Product> findAll(Integer offset, Integer maxResults) {
         return (List<Product>)sessionFactory.openSession()
                 .createCriteria(Product.class)

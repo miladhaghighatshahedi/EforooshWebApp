@@ -8,22 +8,14 @@ import java.util.List;
  * Created by milad on 7/4/2015.
  */
 public interface CategoryDAO {
-    public Category add(Category category);
-
-    public Category update(long objectId);
-
-    public Category removeById(long objectId);
-
-    public Category findById(long objectId);
-
-    public Category findByName(String name);
-
-    public List<Category> findAll(Integer offset, Integer maxResults);
-    public List<Category> findAll();
-
-    public List<Category> findAllCategories(Integer offset, Integer maxResults);
-
-    public List<Category> findByParentId(long parentId);
-
-    public Long count();
+    Category add(Category category);
+    Category update(long objectId);
+    Category removeById(long objectId);
+    Category findById(long objectId);
+    Category findByName(String name);
+    List<Category> findAll();
+    List<Category> findAllParents();
+    List<Category> findAllCategories();
+    List<Category> findByParentId(long parentId);
+    Long count();
 }

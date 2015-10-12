@@ -47,10 +47,10 @@ public class ProductController {
     public String showProduct(Locale locale, Map<String, Object> model,Integer offset, Integer maxResults) {
         Product product = new Product();
         model.put("product", product);
-        model.put("products", productService.findAllProductCategoryParentCategory(offset,maxResults));
+        model.put("products", productService.findAll(offset,maxResults));
         model.put("count", productService.count());
         model.put("offset", offset);
-        model.put("categories", categoryService.findAll(offset,offset));
+        model.put("categories", categoryService.findAllParents());
 
         List<String> conditions = new ArrayList<String>();
         conditions.add("NEW");
@@ -89,7 +89,7 @@ public class ProductController {
     List<Category> findAllCategories(Integer offset, Integer maxResults,Map<String, Object> model) {
         model.put("count", productService.count());
         model.put("offset", offset);
-        return categoryService.findAll(offset,maxResults);
+        return categoryService.findAll();
     }
 
     @RequestMapping(value = "/product/subcategories", method = RequestMethod.GET)

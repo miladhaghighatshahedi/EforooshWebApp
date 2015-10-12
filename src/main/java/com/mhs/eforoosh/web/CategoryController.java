@@ -37,7 +37,7 @@ public class CategoryController {
     public String showCategoryPage(Locale locale, Map<String, Object> model,Integer offset, Integer maxResults) {
         Category category = new Category();
         model.put("category", category);
-        model.put("categories", categoryService.findAll(offset,maxResults));
+        model.put("categories", categoryService.findAll());
         model.put("count", categoryService.count());
         model.put("offset", offset);
         return "category";
@@ -85,7 +85,7 @@ public class CategoryController {
     List<Category> findAllCategories(Integer offset, Integer maxResults,Map<String, Object> model) {
         model.put("count", categoryService.count());
         model.put("offset", offset);
-        return categoryService.findAll(offset,maxResults);
+        return categoryService.findAll();
     }
 
     @RequestMapping(value = "/category/subcategories", method = RequestMethod.GET)
