@@ -40,8 +40,10 @@
     <link type="text/css" rel="stylesheet" href="../../resources/css/navbar-fixed-top.css">
     <link type="text/css" rel="stylesheet" href="../../resources/css/docs.min.css">
     <link type="text/css" rel="stylesheet" href="../../resources/css/custom.css">
+    <link type="text/css" rel="stylesheet" href="../../resources/css/accordionMenu.css">
     <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap-theme.min.css">
+    <script src="../../resources/js/accordion.js"></script>
     <script src="../../resources/js/jquery.min.js"></script>
     <script src="../../resources/js/bootstrap.min.js"></script>
 

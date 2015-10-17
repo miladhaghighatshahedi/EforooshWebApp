@@ -144,5 +144,14 @@ a {
     }
 }
 
+/***Admin Control Panel***/
+body { padding-top:60px; }
+.panel-body .btn:not(.btn-block) { width:120px;margin-bottom:10px; }
+
+/**Store products**/
+.btn-product{
+    width: 100%;
+}
+
 
 

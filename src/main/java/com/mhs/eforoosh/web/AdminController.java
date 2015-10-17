@@ -29,6 +29,7 @@ import java.util.*;
  */
 @Controller
 public class AdminController {
+    public static final String ORDERS_TEMPLATE = "/reports/orders_detail.jrxml";
     public static final String ORDER_TEMPLATE = "/reports/order_detail.jrxml";
     private static final long serialVersionUID = 1L;
     private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
@@ -164,7 +165,7 @@ public class AdminController {
         sortField.setType(SortFieldTypeEnum.FIELD);
         sortList.add(sortField);
         params.put(JRParameter.SORT_FIELDS, sortList);
-        jasperReportDownloadService.download("pdf", "pdf", response, ORDER_TEMPLATE, jasperReportOrderService.getDataSource(), "OrdersReport.pdf", params);
+        jasperReportDownloadService.download("pdf", "pdf", response, ORDERS_TEMPLATE, jasperReportOrderService.getDataSource(), "OrdersReport.pdf", params);
     }
 
     @RequestMapping(value = "admin/orders/xls/ordersReport", method = RequestMethod.GET)
@@ -179,7 +180,7 @@ public class AdminController {
         sortField.setType(SortFieldTypeEnum.FIELD);
         sortList.add(sortField);
         params.put(JRParameter.SORT_FIELDS, sortList);
-        jasperReportDownloadService.download("xls", "xls", response, ORDER_TEMPLATE, jasperReportOrderService.getDataSource(), "OrdersReport.xls", params);
+        jasperReportDownloadService.download("xls", "xls", response, ORDERS_TEMPLATE, jasperReportOrderService.getDataSource(), "OrdersReport.xls", params);
     }
 
     @RequestMapping(value = "admin/orders/html/ordersReport", method = RequestMethod.GET)
@@ -196,7 +197,7 @@ public class AdminController {
         sortField.setType(SortFieldTypeEnum.FIELD);
         sortList.add(sortField);
         params.put(JRParameter.SORT_FIELDS, sortList);
-        jasperReportDownloadService.download("html", "html", response, ORDER_TEMPLATE, jasperReportOrderService.getDataSource(), "OrdersReport.html", params);
+        jasperReportDownloadService.download("html", "html", response, ORDERS_TEMPLATE, jasperReportOrderService.getDataSource(), "OrdersReport.html", params);
     }
 
 
