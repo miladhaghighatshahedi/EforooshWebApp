@@ -21,6 +21,7 @@ public class RootController {
 
     @RequestMapping("login")
     public String login(Locale locale) {
+
         logger.info("Welcome home! The client locale is {}.", locale);
         return "login";
     }

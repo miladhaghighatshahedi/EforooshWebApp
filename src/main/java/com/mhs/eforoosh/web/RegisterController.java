@@ -14,10 +14,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by milad on 6/23/2015.
@@ -52,11 +54,8 @@ public class RegisterController {
 
     @RequestMapping("admin/registerAuthority")
     public String showAuthorityRegister(Locale locale, Model model) {
-        if (!model.containsAttribute("authority") || !model.containsAttribute("roles")) {
-            Authority authority = new Authority();
-            model.addAttribute("authority", authority);
+            model.addAttribute("authority", new Authority());
             model.addAttribute("roles", roleService.findAllClean());
-        }
         return "register-authority";
     }
 

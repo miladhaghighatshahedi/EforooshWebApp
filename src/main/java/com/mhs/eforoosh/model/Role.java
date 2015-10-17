@@ -16,8 +16,6 @@ import java.util.Set;
 public class Role implements Serializable {
     private static final long serialVersionUID = 1L;
     private long objectId;
-    @Size(min = 6, max = 30, message = "{rolename.size.message}")
-    @UniqueRolename(message = "Such RoleName ALready Exists!")
     private String roleName;
     private Date dateAdded = new Date();
     private Set<User> userSet = new HashSet<User>();

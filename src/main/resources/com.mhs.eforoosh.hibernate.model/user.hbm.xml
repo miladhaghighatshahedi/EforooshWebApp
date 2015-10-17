@@ -13,8 +13,7 @@
 
         <one-to-one name="credential" class="com.mhs.eforoosh.model.Credential" cascade="save-update,delete"/>
 
-        <set name="roleSet" table="TBL_USER_ROLE" inverse="false" lazy="false"
-             cascade="save-update,delete,delete-orphan">
+        <set name="roleSet" table="TBL_USER_ROLE"  lazy="false" cascade="delete,delete-orphan">
             <key column="USER_ID" not-null="true"/>
             <many-to-many class="Role">
                 <column name="ROLE_ID" not-null="true"/>

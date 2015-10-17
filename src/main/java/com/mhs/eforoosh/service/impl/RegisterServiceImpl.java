@@ -46,10 +46,12 @@ public class RegisterServiceImpl implements RegisterService {
 
     @Override
     public void registerAuthority(User authority) {
+
         ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
         authority.getCredential().setPassword(passwordEncoder.encodePassword(authority.getCredential().getPassword(), null));
         authority.getCredential().setEnabled(true);
         authority.getCredential().setUser(authority);
+
 
         userDAO.add(authority);
     }

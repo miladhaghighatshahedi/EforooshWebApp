@@ -53,7 +53,6 @@
             <artifactId>commons-fileupload</artifactId>
             <version>1.2</version>
         </dependency>
-
         <!-- Dependency required by Jasper -->
         <dependency>
             <groupId>commons-digester</groupId>
@@ -72,9 +71,15 @@
         </dependency>
         <!--Servlet-->
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.0.1</version>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>2.2.1</version>
+        </dependency>
+        <!--JSTL dependency-->
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
         </dependency>
         <!--Apache Commons-->
         <dependency>
@@ -111,12 +116,6 @@
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
             <version>${org.slf4j-version}</version>
-        </dependency>
-        <!--JSTL dependency-->
-        <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
         </dependency>
         <!--Apache Tiles for jsp template-->
         <dependency>
@@ -286,9 +285,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>javax.servlet.jsp-api</artifactId>
-            <version>2.2.1</version>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.0.1</version>
         </dependency>
     </dependencies>
     <!--Build-->

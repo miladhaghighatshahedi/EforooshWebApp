@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
-import static com.mhs.eforoosh.web.util.RepositoryUtil.cast;
+
 
 /**
  * Created by MHS on 11/27/2014.
@@ -48,31 +48,25 @@ public class RoleDAOImpl implements RoleDAO {
 
     @Override
     public Role findById(long objectId) {
-        Role role = (Role) sessionFactory.getCurrentSession().load(Role.class, objectId);
+        Role role = (Role) sessionFactory.getCurrentSession().get(Role.class, objectId);
         return role;
     }
 
     @Override
     public List<Role> findAllByJoinFetch() {
         Query query = sessionFactory.getCurrentSession().createQuery("SELECT  r FROM Role r JOIN FETCH r.userSet order by r.objectId asc");
-        query.setCacheable(true);
-        List<Role> roleList = cast(query.list());
+        List<Role> roleList = (List<Role> )query.list();
         return roleList;
     }
 
     @Override
     public List<Role> findAll() {
-        //Query query =  sessionFactory.getCurrentSession().createQuery("SELECT r.objectId,r.roleName,r.dateAdded FROM Role r  order by r.objectId asc");
-        //query.setCacheable(true);
-        //List<Role> roleList =query.list();
-
         return sessionFactory.getCurrentSession().getNamedQuery("findAllRoles").list();
     }
 
     public List<Role> findAllClean() {
         Query query = sessionFactory.getCurrentSession().getNamedQuery("findAllRoles");
-        query.setCacheable(true);
-        List<Role> roleList = query.list();
+        List<Role> roleList = (List<Role>)query.list();
         return roleList;
     }
 
