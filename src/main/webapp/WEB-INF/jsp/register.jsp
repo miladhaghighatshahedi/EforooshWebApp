@@ -60,8 +60,7 @@
     </center>
 
 
-    <form:form id="registerUserform" commandName="customer" class="form-horizontal registerCustomerForm" role="form"
-               method="POST">
+    <form:form id="registerUserform" commandName="customer" class="form-horizontal registerCustomerForm" role="form" method="POST">
         <div id="registerBox" style="margin-top:50px;"
              class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
             <div class="panel panel-info">

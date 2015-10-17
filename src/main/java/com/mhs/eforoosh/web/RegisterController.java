@@ -50,14 +50,6 @@ public class RegisterController {
         return "redirect:/register.html?success=true";
     }
 
-    @RequestMapping("/register/alreadyExistsCustomer")
-    public
-    @ResponseBody
-    String alreadyExistsCustomer(@RequestParam String username) {
-        Boolean available = credentialService.findByUsername(username) == null;
-        return available.toString();
-    }
-
     @RequestMapping("admin/registerAuthority")
     public String showAuthorityRegister(Locale locale, Model model) {
         if (!model.containsAttribute("authority") || !model.containsAttribute("roles")) {
@@ -68,23 +60,26 @@ public class RegisterController {
         return "register-authority";
     }
 
-    @RequestMapping(value = "admin/registerAuthority/roles", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    List<Role> findAllRoles() {
-        return roleService.findAll();
-    }
-
     @RequestMapping(value = "admin/registerAuthority", method = RequestMethod.POST)
     public String registerAuthority(@ModelAttribute("authority") Authority authority) {
         registerService.registerAuthority(authority);
         return "redirect:/admin/registerAuthority.html?registerSuccess=true";
     }
 
+
+    @RequestMapping("/register/alreadyExistsCustomer")
+    public @ResponseBody String alreadyExistsCustomer(@RequestParam String username) {
+        Boolean available = credentialService.findByUsername(username) == null;
+        return available.toString();
+    }
+
+    @RequestMapping(value = "admin/registerAuthority/roles", method = RequestMethod.GET)
+    public @ResponseBody List<Role> findAllRoles() {
+        return roleService.findAll();
+    }
+
     @RequestMapping("admin/registerAuthority/alreadyExistsAuthority")
-    public
-    @ResponseBody
-    String alreadyExistsAuthority(@RequestParam String username) {
+    public @ResponseBody String alreadyExistsAuthority(@RequestParam String username) {
         Boolean available = credentialService.findByUsername(username) == null;
         return available.toString();
     }

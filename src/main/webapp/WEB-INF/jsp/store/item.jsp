@@ -3,6 +3,8 @@
 
 <div class="container">
 
+    <jsp:include page="../../templates/layout/store/storeMenu.jsp"/>
+
 
     <div class="panel panel-info">
         <div style="padding-top:30px" class="panel-body">

@@ -3,6 +3,8 @@
 
 <div class="container">
 
+    <jsp:include page="../../templates/layout/store/storeMenu.jsp"/>
+
     <c:choose>
         <c:when test="${empty basket.items}">
             <c:if test="${empty param.success}">

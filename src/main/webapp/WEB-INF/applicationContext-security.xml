@@ -29,9 +29,13 @@
         <security:intercept-url pattern="/user/**" access="hasAnyRole({'ROLE_ADMIN','ROLE_USER'})"/>
         <security:intercept-url pattern="/client**" access="hasAnyRole({'ROLE_ADMIN','ROLE_CLIENT'})"/>
         <security:intercept-url pattern="/client/**" access="hasAnyRole({'ROLE_ADMIN','ROLE_CLIENT'})"/>
-        <security:form-login login-page="/login.html"/>
+        <security:form-login login-page="/login.html"
+                             authentication-failure-url="/login.html?error=true"
+                             authentication-success-handler-ref="customAuthenticationSuccessHandler"/>
         <security:logout logout-url="/logout" invalidate-session="true"/>
     </security:http>
+
+    <bean id="customAuthenticationSuccessHandler" class="com.mhs.eforoosh.web.util.security.CustomUrlAuthenticationSuccessHandler" />
 
 
 </beans>

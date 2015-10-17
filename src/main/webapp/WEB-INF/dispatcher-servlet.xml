@@ -107,7 +107,6 @@
 
     <mvc:annotation-driven conversion-service="conversionService"/>
 
-    <bean id="jacksonMessageConverter"
-          class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/>
+    <bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/>
 
 </beans>

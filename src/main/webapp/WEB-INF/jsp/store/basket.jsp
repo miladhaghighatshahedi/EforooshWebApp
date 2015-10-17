@@ -18,6 +18,8 @@
 
 <div class="container">
 
+    <jsp:include page="../../templates/layout/store/storeMenu.jsp"/>
+
     <c:choose>
         <c:when test="${empty basket.items}">
             <div class="alert alert-waning2">

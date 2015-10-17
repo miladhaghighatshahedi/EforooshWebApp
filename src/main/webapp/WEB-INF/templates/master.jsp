@@ -40,10 +40,8 @@
     <link type="text/css" rel="stylesheet" href="../../resources/css/navbar-fixed-top.css">
     <link type="text/css" rel="stylesheet" href="../../resources/css/docs.min.css">
     <link type="text/css" rel="stylesheet" href="../../resources/css/custom.css">
-    <link type="text/css" rel="stylesheet" href="../../resources/css/accordionMenu.css">
     <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap-theme.min.css">
-    <script src="../../resources/js/accordion.js"></script>
     <script src="../../resources/js/jquery.min.js"></script>
     <script src="../../resources/js/bootstrap.min.js"></script>
 
@@ -180,13 +178,6 @@
                     </li>
                 </security:authorize>
 
-
-                <li class="${current ==  'template' ? 'active' : ''}">
-                    <a href="<spring:url value="/template.html"/>">
-                        template
-                    </a>
-                </li>
-
             </ul>
 
             <ul class="nav navbar-nav navbar-left">
@@ -222,35 +213,7 @@
     </div>
 </nav>
 
-<center>
-    <nav class="navbar  navbar-inverse" style="width: 20%;" role="navigation">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="myNavbar" style="height: 0.800000011920929px;margin-right: 0.6%;">
-                <ul class="nav navbar-nav navbar-right">
 
-                    <li class="${current ==  'store' ? 'active' : ''}">
-                        <a href="<spring:url value="/store.html"/>">
-                            <spring:message code="common.store"/>
-                        </a>
-                    </li>
-
-                    <li class="${current ==  'basket' ? 'active' : ''}">
-                        <a href="<spring:url value="/basket.html"/>">
-                            <spring:message code="common.basket"/>
-                        </a>
-                    </li>
-
-                    <li class="${current ==  'order' ? 'active' : ''}">
-                        <a href="<spring:url value="/order.html"/>">
-                            <spring:message code="common.order"/>
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </nav>
-</center>
 
 <tiles:insertAttribute name="banner"/>
 <tiles:insertAttribute name="notification"/>

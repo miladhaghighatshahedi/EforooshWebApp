@@ -43,6 +43,7 @@
     <definition name="client" extends="master">
         <put-attribute name="title" value="Client"/>
         <put-attribute name="body" value="/WEB-INF/jsp/client/client.jsp"/>
+        <put-attribute name="storeMenu" value="/WEB-INF/templates/layout/store/storeMenu.jsp"/>
         <put-attribute name="current" value="client"/>
     </definition>
 
@@ -119,6 +120,7 @@
     <definition name="store" extends="master">
         <put-attribute name="title" value="Store"/>
         <put-attribute name="body" value="/WEB-INF/jsp/store/store.jsp"/>
+        <put-attribute name="storeMenu" value="/WEB-INF/templates/layout/store/storeMenu.jsp"/>
         <put-attribute name="current" value="store"/>
     </definition>
 
