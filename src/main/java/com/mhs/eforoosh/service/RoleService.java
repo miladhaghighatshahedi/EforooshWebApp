@@ -3,6 +3,7 @@ package com.mhs.eforoosh.service;
 import com.mhs.eforoosh.model.Role;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by MHS on 11/25/2014.
@@ -16,9 +17,7 @@ public interface RoleService {
 
     public Role findById(long objectId);
 
-    public List<Role> findAll();
-
-    List<Role> findAllClean();
+    public Set<Role> findAll();
 
     public Role findByRoleName(String roleName);
 

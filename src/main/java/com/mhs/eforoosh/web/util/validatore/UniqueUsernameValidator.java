@@ -11,6 +11,7 @@ import javax.validation.ConstraintValidatorContext;
  * Created by MHS on 11/29/2014.
  */
 public class UniqueUsernameValidator implements ConstraintValidator<UniqueUsername, String> {
+
     @Autowired
     private CredentialService credentialService;
 

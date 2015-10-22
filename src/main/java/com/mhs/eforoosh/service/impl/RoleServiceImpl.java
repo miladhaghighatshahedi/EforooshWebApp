@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by MHS on 11/27/2014.
@@ -47,13 +48,8 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public List<Role> findAll() {
-        List<Role> roles = roleDAO.findAll();
-        return roles;
-    }
-
-    public List<Role> findAllClean() {
-        List<Role> roles = roleDAO.findAllClean();
+    public Set<Role> findAll() {
+        Set<Role> roles = roleDAO.findAll();
         return roles;
     }
 

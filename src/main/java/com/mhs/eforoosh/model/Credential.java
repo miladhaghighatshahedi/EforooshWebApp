@@ -1,7 +1,10 @@
 package com.mhs.eforoosh.model;
 
 import com.mhs.eforoosh.model.user.User;
+import com.mhs.eforoosh.web.util.annotation.validation.UniqueUsername;
+import org.hibernate.validator.constraints.Email;
 
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -11,7 +14,11 @@ import java.util.Date;
 public class Credential implements Serializable {
     private static final long serialVersionUID = 1L;
     private long objectId;
+    @Size(min=10,message = "Min Length 10 Character!")
+    @Email(message = "Invalid Email Address!")
+    //@UniqueUsername(message = "such username already exists!")
     private String username;
+    @Size(min=10,message = "Min Length 10 Character!")
     private String password;
     private boolean enabled;
     private Date lastUpdate = new Date();

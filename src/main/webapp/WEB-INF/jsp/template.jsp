@@ -748,12 +748,12 @@
                 <h3 id="js-individual-compiled">Individual or compiled</h3>
 
                 <p>Plugins can be included individually (using Bootstrap's individual <code>*.js</code> files), or all
-                    at once (using <code>bootstrap.js</code> or the minified <code>bootstrap.min.js</code>).</p>
+                    at once (using <code>bootstrap.js</code> or the minified <code>bootstrap_3.3.5.min.js</code>).</p>
 
                 <div class="bs-callout bs-callout-danger">
                     <h4>Using the compiled JavaScript</h4>
 
-                    <p>Both <code>bootstrap.js</code> and <code>bootstrap.min.js</code> contain all plugins in a single
+                    <p>Both <code>bootstrap.js</code> and <code>bootstrap_3.3.5.min.js</code> contain all plugins in a single
                         file. Include only one.</p>
                 </div>
 

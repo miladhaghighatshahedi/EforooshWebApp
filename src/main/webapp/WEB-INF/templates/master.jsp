@@ -15,34 +15,16 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!--
-    <script type="text/javascript">
-       var contextPath = "<%= request.getContextPath()%>";
-    </script>
 
+    <link rel="stylesheet" href="../../resources/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="../../resources/css/bootstrap-theme.min.css">
 
-
-    <c:set var="locale" value="${pageContext.response.locale}"/>
-
-    <c:if test="${locale.toString().equals('en')}">
-        <script src="<%=request.getContextPath() %>/resources/js/custom-validation.js"></script>
-    </c:if>
-
-    <c:if test="${locale.toString().equals('fa')}">
-        <script src="<%=request.getContextPath() %>/resources/js/custom-validation_fa.js"></script>
-    </c:if>
-    -->
-
-    <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap.css">
-    <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap-theme.css">
-    <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap.icon-large.css">
-    <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap.icon-large.min.css">
     <link type="text/css" rel="stylesheet" href="../../resources/css/navbar-fixed-top.css">
-    <link type="text/css" rel="stylesheet" href="../../resources/css/docs.min.css">
     <link type="text/css" rel="stylesheet" href="../../resources/css/custom.css">
-    <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap.min.css">
-    <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap-theme.min.css">
+
     <script src="../../resources/js/jquery.min.js"></script>
+    <script src="../../resources/js/jquery.validate.min.js"></script>
     <script src="../../resources/js/bootstrap.min.js"></script>
 
     <title>

@@ -10,8 +10,9 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
-
+import java.util.Set;
 
 
 /**
@@ -26,8 +27,14 @@ public class RoleDAOImpl implements RoleDAO {
 
     @Override
     public Role add(Role role) {
-        role.setDateAdded(new Date());
-        sessionFactory.getCurrentSession().persist(role);
+        if(role.getObjectId() == 0) {
+            role.setDateAdded(new Date());
+            sessionFactory.getCurrentSession().persist(role);
+        }
+        else
+        {
+            sessionFactory.getCurrentSession().merge(role);
+        }
         return role;
     }
 
@@ -59,15 +66,10 @@ public class RoleDAOImpl implements RoleDAO {
         return roleList;
     }
 
-    @Override
-    public List<Role> findAll() {
-        return sessionFactory.getCurrentSession().getNamedQuery("findAllRoles").list();
-    }
+    public Set<Role> findAll() {
+        List<Role> roleList = sessionFactory.getCurrentSession().getNamedQuery("findAllRoles").list();
 
-    public List<Role> findAllClean() {
-        Query query = sessionFactory.getCurrentSession().getNamedQuery("findAllRoles");
-        List<Role> roleList = (List<Role>)query.list();
-        return roleList;
+        return new HashSet<Role>(roleList);
     }
 
     @Override

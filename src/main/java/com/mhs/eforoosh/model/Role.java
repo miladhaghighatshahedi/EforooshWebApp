@@ -51,31 +51,14 @@ public class Role implements Serializable {
         this.dateAdded = dateAdded;
     }
 
-    @JsonIgnore
-    public Set<User> getUserSet() {
-        return userSet;
-    }
 
-    public void setUserSet(Set<User> userSet) {
-        this.userSet = userSet;
-    }
-
-    public void addUser(User newUser) {
-        if (!(newUser instanceof User)) {
-            throw new IllegalArgumentException("can only add User to a User");
-        }
-        if ((newUser != null) && (!getUserSet().contains(newUser))) {
-            getUserSet().add(newUser);
-        }
-    }
 
     @Override
     public boolean equals(Object other) {
         if (this == other) return true;
         if (!(other instanceof Role)) return false;
-        final Role role = (Role) other;
+        Role role = (Role) other;
         if (objectId != role.objectId) return false;
-
         return true;
     }
 

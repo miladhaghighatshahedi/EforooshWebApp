@@ -47,12 +47,18 @@ public class RegisterServiceImpl implements RegisterService {
     @Override
     public void registerAuthority(User authority) {
 
+        for(Role role:authority.getRoleSet()){
+            System.out.println("detachedRole ID "+role.getObjectId());
+            System.out.println("detachedRole NAME "+role.getRoleName());
+            System.out.println("************************************");
+        }
+
         ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder(256);
         authority.getCredential().setPassword(passwordEncoder.encodePassword(authority.getCredential().getPassword(), null));
         authority.getCredential().setEnabled(true);
         authority.getCredential().setUser(authority);
 
 
-        userDAO.add(authority);
+        //userDAO.add(authority);
     }
 }

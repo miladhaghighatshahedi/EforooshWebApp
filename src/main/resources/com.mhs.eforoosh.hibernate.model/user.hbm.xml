@@ -13,7 +13,7 @@
 
         <one-to-one name="credential" class="com.mhs.eforoosh.model.Credential" cascade="save-update,delete"/>
 
-        <set name="roleSet" table="TBL_USER_ROLE"  lazy="false" cascade="delete,delete-orphan">
+        <set name="roleSet" table="TBL_USER_ROLE"  fetch="select" cascade="merge">
             <key column="USER_ID" not-null="true"/>
             <many-to-many class="Role">
                 <column name="ROLE_ID" not-null="true"/>
@@ -23,15 +23,13 @@
     </class>
 
 
-    <subclass name="com.mhs.eforoosh.model.user.Authority" discriminator-value="AUTHORITY"
-              extends="com.mhs.eforoosh.model.user.User">
+    <subclass name="com.mhs.eforoosh.model.user.Authority"  discriminator-value="AUTHORITY" extends="com.mhs.eforoosh.model.user.User">
         <join table="TBL_AUTHORITY_USERS">
             <key column="USER_ID"/>
         </join>
     </subclass>
 
-    <subclass name="com.mhs.eforoosh.model.user.Customer" discriminator-value="CUSTOMER"
-              extends="com.mhs.eforoosh.model.user.User">
+    <subclass name="com.mhs.eforoosh.model.user.Customer" discriminator-value="CUSTOMER" extends="com.mhs.eforoosh.model.user.User">
         <join table="TBL_CUSTOMER_USERS">
             <key column="USER_ID"/>
         </join>

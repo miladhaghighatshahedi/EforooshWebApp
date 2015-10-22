@@ -14,7 +14,7 @@ public abstract class User implements Serializable {
     private static final long serialVersionUID = 1L;
     private long objectId;
     private Credential credential;
-    private Set<Role> roleSet = new HashSet<Role>();
+    private Set<Role> roleSet = new HashSet<Role>(0);
 
 
     protected User() {
@@ -61,9 +61,7 @@ public abstract class User implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
-
         User user = (User) o;
-
         if (objectId != user.objectId) return false;
         if (credential != null ? !credential.equals(user.credential) : user.credential != null) return false;
         if (roleSet != null ? !roleSet.equals(user.roleSet) : user.roleSet != null) return false;

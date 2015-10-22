@@ -1,6 +1,27 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@include file="/WEB-INF/templates/layout/taglibs.jsp" %>
 
+<c:url var="findRolesURL" value="/admin/findAllRoles.json"/>
+<script type="text/javascript">
+    $(document).ready(function () {
+        getRoles();
+    });
+
+    function getRoles() {
+        $.getJSON('${findRolesURL}', {ajax: 'true'}, function (data) {
+
+            var html = '<option value=""></option>';
+            var len = data.length;
+            for (var i = 0; i < len; i++) {
+                html += '<option value="' + data[i].roleName + '">' + data[i].roleName + '</option>';
+            }
+            html += '</option>';
+
+            $('#roles').html(html);
+        });
+    }
+</script>
+
 <security:authorize access="hasRole('ROLE_ADMIN')">
     <div class="container">
         <center>
@@ -40,12 +61,15 @@
                             <input type="password" class="form-control" id="RETYPE_autority_PASSWORD"/>
                         </div>
 
-                        <div style="margin-bottom: 5px;width: 100%;" class="input-group">
+
+                        <div >
                             <form:label path="roleSet" cssClass="label label-success">
                                 <spring:message code="admin.register.form.reRole"/>
                             </form:label>
                             <br/>
-                            <form:select  path="roleSet" multiple="true"  items="${roles}"  />
+                            <form:select multiple="true" id="roless"  path="roleSet" >
+                              <form:options items="${roles}" itemLabel="roleName" itemValue="objectId"/>
+                            </form:select>
                         </div>
 
                         <div style="margin-top:10px" class="form-group">

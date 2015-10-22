@@ -86,7 +86,7 @@ public class ProductController {
     @RequestMapping(value = "/product/categories", method = RequestMethod.GET)
     public
     @ResponseBody
-    List<Category> findAllCategories(Map<String, Object> model) {
+    List<Category> findAllCategories() {
         return categoryService.findAllParents();
     }
 

@@ -6,9 +6,7 @@
 
 
                 <br/><br/><br/><br/>
-            ***<c:out value="${username1}"></c:out>
-            ***<c:out value="${username2}"></c:out>
-            ***<c:out value="${username3}"></c:out>
+
             <center>
                     <div class="panel panel-info">
                         <div class="panel-body">
